@@ -1,0 +1,246 @@
+*{
+    padding:0;
+    margin:0;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+h1{
+    font-size:45px;
+    font-weight: 600px;
+    color: rgb(31, 31, 31);
+}
+nav{
+    height: 60px;
+    /* background-color: antiquewhite; */
+    padding: 1% 1%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav img{
+    /* height:70px; */
+    width:120px; 
+    position:relative;
+    top:10px;
+}
+.nav-links{
+    flex:1;
+    text-align: center;
+}
+.nav-links ul li{
+    list-style-type: none;
+    display:inline-block;
+    padding: 8px 12px;
+    position:relative;
+}
+.nav-links ul li a{
+    text-decoration: none;
+    color:#023047;
+    font-size:18px;
+}
+.nav-links ul li::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background-color: #0077B6;
+    display:block;
+    margin:auto;
+    transition:0.5s
+}
+.nav-links ul li:hover::after{
+    width:100%;
+}
+
+.btn{
+    width:143px;
+    height:25px;
+    background-color: #0077B6;
+    border: 1px solid ;
+    background-color: #0077B6;
+    font-size: 15px; 
+    margin-left:1%;
+}
+.btn-1{
+    margin-left: 8%;
+}
+#log a{
+    color:white;
+    font-weight:medium;
+}
+
+/* nav bar ending */
+
+.background{
+    min-height:100vh;
+    min-width:100%;
+    background-image: url('/Client/assets/HomePage.png');
+    background-size: contain;
+    background-position:center;
+    /* background-repeat: no-repeat; */
+}
+.text-box{
+    width:90%;
+    color: #fff;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+.background #BestCollege{
+    font-size:60px;
+    color: white; 
+}
+input[type="text"]{
+    outline:none;
+    padding:10px;
+    width:676px;
+}
+input[type="button"]{
+    padding:10px;
+    width:228px;
+    background-color: #F24E1E;
+    color:white;
+    outline:none;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.colleges h1{
+    text-align:center;
+    padding: 30px 15px;
+}
+
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    width:100%;
+    
+}
+.box{
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height:287px;
+width:24%;
+margin:25px;
+background-color: #005F73;
+padding:10px 10px;
+cursor:pointer;
+}
+.box img{
+    width:120px;
+}
+.box h2{
+    margin-top:8%;
+    text-align: center;
+    font-size:44px;
+    color:white;
+}
+.box:hover{
+background-color: #006073d2;
+}
+
+.container-college{
+    display:flex;
+    /* height:100vh; */
+    /* flex-wrap: wrap; */
+    justify-content:center;
+    width:100%;
+}
+
+.boxes{
+    height:400px;
+    width: 24%;
+    background-color:#ffffff;
+    border: 1px solid #e5e5e5;
+    padding: 10px 10px; 
+    margin: 25px; 
+    cursor: pointer;
+    box-shadow:0 0 20px 0 rgba(0,0,0,0.3); 
+}
+.boxes:hover{
+/* box-shadow:0 0 20px 0 rgba(0,0,0,1); ; */
+}
+.topCollege{
+    margin-left:7.4%;
+    padding: 10px 15px; 
+}
+.top h1{
+    margin-top:3%;  
+    margin-left: 7.3%;
+    padding: 10px 5px; 
+}
+.boxes img{
+    width:100%;
+}
+.boxes h3{
+    font-size:18px;
+    margin-top:4%;
+}
+.boxes p{
+    margin-top:5%;
+    font-size:12px;
+}
+
+/* Reviews */
+
+.reviews h1{
+    margin-top:2%;
+    text-align: center;
+}
+.reviewsP{
+    margin-top: 2.5%;
+    text-align: center;
+}
+.review-container{
+    display:flex; 
+    justify-content: center;
+    
+}
+.review{
+    display:flex;
+    align-items: center;
+    height:189px; 
+    width:15%;
+    background-color: #E5E5E5;
+    padding: 10px 10px; 
+    margin:25px; 
+    cursor:pointer; 
+    transition:0.3s;
+    
+}
+.review:hover{
+    box-shadow:0 0 20px 0 rgba(0,0,0,0.15);
+    height:192px;
+    width:16%;
+}
+
+/* Footer */
+footer{
+    width: 80%; 
+    margin-bottom: 10px;   
+    
+    
+}
+.footers{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    width:100%; 
+    margin-top: 5%; 
+    margin-left:6%;    
+    border-bottom:1px solid rgb(66, 66, 66) ;  
+    
+}
+.footers a{
+    text-decoration: none;
+    color: black; 
+    font-weight: 550;
+}
+
+.footers img{
+    width: 120px; 
+}
