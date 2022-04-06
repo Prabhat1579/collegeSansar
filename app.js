@@ -5,6 +5,7 @@ const app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public/'));
 
+
 app.get("/",function(req,res){
   res.sendFile(__dirname+"/index.html");
 })
@@ -23,6 +24,7 @@ app.get("/Login",function(req,res){
 app.get("/Register",function(req,res){
   res.sendFile(__dirname+"/Login.html");
 })
+
 
 app.listen(3000,function(){
   console.log("server running in port 3000");
