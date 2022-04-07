@@ -15,7 +15,7 @@
     <body>
         <header>
           <nav>
-            <a href="Index.html"><img src="assets/logo.png" alt="logo" /></a>
+            <a href="/Index"><img src="assets/logo.png" alt="logo" /></a>
             <div class="nav-links">
               <ul>
                 <li><a href="/college">College</a></li>
@@ -32,7 +32,8 @@
             <div class="logIn signUp">
               <h2>Sign up to College Sansar</h2>
               <div class="LogIn form">
-              <form action="#" class="sign-in-form">
+
+              <form action="controller/auth.js" class="sign-in-form" method="POST">
 
                 <div class="tf name">
                   <input type="text" name="name" id="name" required placeholder="Name">
@@ -45,8 +46,15 @@
                       <input type="password" name="password" id="password" required placeholder="Password">
                   </div>
 
+                  
+                  <div class="tf confirmPassword">
+                    <input type="password" name="confirmPassword" id="confirmPassword" required placeholder=" Confirm Password">
+                </div>
+                
+
                   <div class="tf submit">
-                      <input type="submit" value="Sign Up">
+                    <button type="submit" class="btn btn-primary">Register user</button>
+                      <!-- <input type="submit" value="Sign Up" name="signUp"> -->
                   </div>
                   <div class="signInText">
                     <p>Or Sign up With</p>
@@ -80,9 +88,10 @@
                  </a>
              </div>
 
-
+            
             </div>
            </div>
+           
 
         </div>
         <script src="/Client/js/LogIn.js"></script>
