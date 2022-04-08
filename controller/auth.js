@@ -21,7 +21,7 @@ exports.Register = (req, res) => {
 
     const { name, email, password, passwordConfirm } = req.body;
 
-    db.query('SELECT Email from users WHERE Email = ?', [email], async (error, results) =>{
+    db.query('SELECT Email from userlogin WHERE Email = ?', [email], async (error, results) =>{
         if(error){
             console.log(error);
         } 
@@ -40,7 +40,7 @@ exports.Register = (req, res) => {
         console.log(hashedPassword);
     });
     
-    db.query('INSERT INTO users SET ?', {name: name, email: email, password: password }, (error, results) =>
+    db.query('INSERT INTO userlogin SET ?', {name: name, email: email, password: password }, (error, results) =>
     {
         if(error){
         console.log(error);
