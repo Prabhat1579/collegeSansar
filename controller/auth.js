@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { append } = require('express/lib/response');
+const Connection = require('mysql/lib/Connection');
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -40,7 +42,7 @@ exports.Register = (req, res) => {
         console.log(hashedPassword);
     });
     
-    db.query('INSERT INTO userlogin SET ?', {name: name, email: email, password: password }, (error, results) =>
+    db.query('INSERT INTO userlogin SET ?', {name: name, email: email, password: hashedPassword }, (error, results) =>
     {
         if(error){
         console.log(error);
@@ -53,6 +55,21 @@ exports.Register = (req, res) => {
 });
 };
 
+
+
+// login code
+exports.login = (req, res) => {
+    console.log(req.body);
+
+    db.query('Select * from userlogin where email = ? and password = ?',(error, results, fields) => {
+        if(results.length > 0 ){
+            res.render("/Index")
+        } else {
+  
+        }
+    })
+
+};
 
 
 
