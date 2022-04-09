@@ -1,8 +1,8 @@
 # collegeSansar
 website to browse about all the colleges
 
-git clone
-inside directory "collegeSansar"
+>> git clone
+this project then, inside directory "collegeSansar"
 
 follow the steps:
 
