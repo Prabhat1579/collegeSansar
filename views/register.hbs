@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,15 +21,15 @@
     <body>
         <header>
           <nav>
-            <a href="/"><img src="assets/logo.png" alt="logo" /></a>
+            <a href="/"><img src="/assets/logo.png" alt="logo" /></a>
             <div class="nav-links">
               <ul>
                 <li><a href="/college">College</a></li>
                 <li><a href="/career">Careers</a></li>
-                <li><a href="/Exam">Exams</a></li>
+                <li><a href="/exam">Exams</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">About</a></li>
-                <li class="btn btn-1" id="log"><a href="/Login">Log In</a></li>
+                <li class="btn btn-1" id="log"><a href="/login">Log In</a></li>
               </ul>
             </div>
           </nav>
@@ -39,7 +39,7 @@
               <h2>Sign up to College Sansar</h2>
               <div class="LogIn form">
 
-              <form action="/auth/Register" class="sign-in-form" method="POST">
+              <form action="/auth/register" class="sign-in-form" method="POST">
 
                 <div class="tf name">
                   <input type="text" name="name" id="name" required placeholder="Name">
@@ -50,14 +50,14 @@
                   </div>
                   <div class="tf password">
                       <input type="password" name="password" id="password" required placeholder="Password">
-                     
+
                   </div>
 
-                  
+
                   <div class="tf confirmPassword">
                     <input type="password" name="confirmPassword" id="confirmPassword" required placeholder=" Confirm Password">
                 </div>
-                
+
 
                   <div class="tf submit">
                     <button type="submit" class="cta">Register user</button>
@@ -85,21 +85,20 @@
           <div class="welcome">
             <div class="create-container">
 
-              <pre> <h1>Already have an 
+              <pre> <h1>Already have an
 account Sign in now.</h1>
              </pre>
              <div class="Create-Now">
-                 <a href="/Login" class="create" id="Sign-In">
+                 <a href="/login" class="create" id="Sign-In">
                      Sign in
                  </a>
               </div>
             </div>
          </div>
-                    {{#if message}}
-              <h4>{{message}}</h4>
-              {{/if}}
-
         </div>
+        {{#if message}}
+        <h4>{{message}}</h4>
+        {{/if}}
         <script src="/Client/js/LogIn.js"></script>
 
 </body>

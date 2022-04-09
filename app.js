@@ -24,7 +24,7 @@ db.connect( (error) => {
   if(error) {
       console.log(error);
   } else {
-      console.log("mySql Connected...");
+      console.log("MySQL Connected");
   }
 });
 
@@ -34,7 +34,6 @@ app.use(express.static(__dirname+'/public/'));
 // defining routes
 
 app.use('/',require('./routes/page'));
-
 app.use('/auth', require('./routes/auth'));
 
 app.listen(3000, () => {
