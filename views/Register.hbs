@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap"
+      rel="stylesheet"
+    />
     <script
     src="https://kit.fontawesome.com/0e01e4ad2c.js"
     crossorigin="anonymous"
@@ -15,7 +21,7 @@
     <body>
         <header>
           <nav>
-            <a href="Index.html"><img src="assets/logo.png" alt="logo" /></a>
+            <a href="/"><img src="assets/logo.png" alt="logo" /></a>
             <div class="nav-links">
               <ul>
                 <li><a href="/college">College</a></li>
@@ -32,21 +38,29 @@
             <div class="logIn signUp">
               <h2>Sign up to College Sansar</h2>
               <div class="LogIn form">
-              <form action="#" class="sign-in-form">
+
+              <form action="/auth/Register" class="sign-in-form" method="POST">
 
                 <div class="tf name">
                   <input type="text" name="name" id="name" required placeholder="Name">
                 </div>
 
                   <div class="tf Email">
-                      <input type="text" name="Email" id="Email" required placeholder="Email">
+                      <input type="text" name="email" id="Email" required placeholder="Email">
                   </div>
                   <div class="tf password">
                       <input type="password" name="password" id="password" required placeholder="Password">
+                     
                   </div>
 
+                  
+                  <div class="tf confirmPassword">
+                    <input type="password" name="confirmPassword" id="confirmPassword" required placeholder=" Confirm Password">
+                </div>
+                
+
                   <div class="tf submit">
-                      <input type="submit" value="Sign Up">
+                    <button type="submit" class="cta">Register user</button>
                   </div>
                   <div class="signInText">
                     <p>Or Sign up With</p>
@@ -71,18 +85,19 @@
           <div class="welcome">
             <div class="create-container">
 
-              <pre> <h1>Already have an account
-                Sign in now.</h1>
+              <pre> <h1>Already have an 
+account Sign in now.</h1>
              </pre>
              <div class="Create-Now">
-                 <a href="Login.html" class="create" id="Sign-In">
+                 <a href="/Login" class="create" id="Sign-In">
                      Sign in
                  </a>
-             </div>
-
-
+              </div>
             </div>
-           </div>
+         </div>
+                    {{#if message}}
+              <h4>{{message}}</h4>
+              {{/if}}
 
         </div>
         <script src="/Client/js/LogIn.js"></script>

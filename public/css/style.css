@@ -73,7 +73,7 @@ nav img{
 .background{
     min-height:100vh;
     min-width:100%;
-    background-image: url('/Client/assets/HomePage.png');
+    background-image: url('/assets/HomePage.png');
     background-size: contain;
     background-position:center;
     /* background-repeat: no-repeat; */

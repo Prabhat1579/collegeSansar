@@ -68,6 +68,7 @@ nav img{
     background-color: #0077B6;
     font-size: 15px; 
     margin-left:1%;
+    
 }
 .btn-1{
     margin-left: 8%;
@@ -88,14 +89,17 @@ nav img{
     background-color: #0077B6;
     color:#ffff;
     width:50%;
+    /* border: 12px solid black; */
 }
 .create-container{
+    padding: 25px 10px;
     margin:70px 60px;
+    /* border: 3px solid tomato; */
 }
 .create-container h1{
     color:#ffffff;
     margin-bottom: 20px;
-    padding:10px 10px;
+    
 }
 
 .Create-Now{
@@ -105,9 +109,9 @@ nav img{
     padding:8px;
     cursor: pointer;
     position:relative;
-    margin: 0 auto;
-    
+    margin: 0 auto;    
 }
+
 .create{
     outline:none;
     background:none;
@@ -140,6 +144,10 @@ nav img{
     color:#0077B6;
     margin-bottom:5%;
 }
+.signUp h2{
+    margin-top:5%;
+    margin-bottom: 1.5%;
+}
 .LogInform{
     /* border:1px solid black; */
     display:flex;
@@ -164,6 +172,31 @@ nav img{
     font-weight:400;
     cursor:pointer; 
     margin-left: 15%;
+}
+.submit{
+    cursor:pointer;
+    width:30%;
+    color:white;
+    font-weight:400;
+    cursor:pointer; 
+    margin-left: 15%;
+
+}
+
+button{
+    color:white;
+    cursor:pointer;
+}
+.cta{
+    background-color: #0077B6;
+    outline:none;
+    border:none;
+    width:120px;
+    height:30px;
+    transition: all 0.8s;
+}
+.cta:hover{
+    background-color: #023047;
 }
 
 label{
