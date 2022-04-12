@@ -26,7 +26,7 @@
             <li><a href="/college">College</a></li>
             <li><a href="/career">Careers</a></li>
             <li><a href="/Exam">Exams</a></li>
-            <li><a href="#">Blog</a></li>
+            {{!-- <li><a href="#">Blog</a></li> --}}
             <li><a href="#">About</a></li>
             <li class="btn" id="log"><a href="/Register">Register</a></li>
           </ul>
@@ -37,15 +37,21 @@
         <div class="logIn">
             <h2>Log in to College Sansar</h2>
             <div class="LogIn form">
-            <form action="#" class="sign-in-form">
+
+            <form action="/auth/login" method="POST" class="sign-in-form">
 
                 <div class="tf Email">
-                    <input type="text" name="Email" id="Email" required placeholder="Email">
+                    <input type="text" name="email" id="Email" required placeholder="Email">
                 </div>
                 <div class="tf password">
                     <input type="password" name="password" id="password" required placeholder="Password">
                 </div>
                 <label for="forgot">Forgot Password</label>
+
+                {{#if message}}
+                      <h4> {{message}} </h4>
+                    {{/if}}
+
                 <div class="tf submit">
                    <button type="submit" class="cta" >Log In</button>
                 </div>

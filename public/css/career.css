@@ -47,6 +47,15 @@ nav img{
     width:100%;
 }
 
+.nav-links ul .active::after{
+    content:'';
+    width:100%;
+    height:2px;
+    background-color: #0077B6;
+    display:block;
+    margin:auto;
+    transition:0.5s
+}
 .btn{
     width:143px;
     height:25px;

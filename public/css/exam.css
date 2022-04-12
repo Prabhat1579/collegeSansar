@@ -50,8 +50,14 @@ nav img{
 .nav-links ul li:hover::after{
     width:100%;
 }
-.nav-links ul li a.active{
-    
+.nav-links ul .active::after{
+    content:'';
+    width:100%;
+    height:2px;
+    background-color: #0077B6;
+    display:block;
+    margin:auto;
+    transition:0.5s
 }
 
 .btn{

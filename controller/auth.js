@@ -12,11 +12,8 @@ const db = mysql.createConnection({
 
 });
 
-
 exports.Register = (req, res) => {
     console.log(req.body);
-
-
 
     const { name, email, password, passwordConfirm } = req.body;
 
@@ -39,13 +36,13 @@ exports.Register = (req, res) => {
         console.log(hashedPassword);
     });
     
-    db.query('INSERT INTO userlogin SET ?', {name: name, email: email, password: hashedPassword }, (error, results) =>
+    db.query('INSERT INTO userlogin SET ?', {name: name, email: email, password: password }, (error, results) =>
     {
         if(error){
         console.log(error);
     } else {
         return res.render('Register', {
-            message: 'user Registered'
+            message: 'user Registered Successfully!'
         });
     }
 
@@ -58,12 +55,21 @@ exports.Register = (req, res) => {
 exports.login = (req, res) => {
     console.log(req.body);
 
-    db.query('Select * from userlogin where email = ? and password = ?',(error, results, fields) => {
-        if(results.length > 0 ){
-            res.render("/Index")
+    const {email, password} = req.body;
+
+    db.query('Select * from userlogin where email = ? and password = ?',[email, password], (error, results, fields) => {
+
+        if(error) throw error
+
+        if(results.length <= 0){
+            return res.render('login', {
+                message: 'Please enter correct email or password!'
+            });
         } else {
-  
+            res.render('Index');
         }
+
+        
     })
 
 };

@@ -37,6 +37,6 @@ app.use('/',require('./routes/page'));
 
 app.use('/auth', require('./routes/auth'));
 
-app.listen(3000, () => {
-  console.log("server running in port 3000");
+app.listen(5000, () => {
+  console.log("server running in port 5000");
 })
