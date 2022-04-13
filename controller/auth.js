@@ -1,8 +1,10 @@
 const mysql = require('mysql');
+const express = require("Express");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { append } = require('express/lib/response');
 const Connection = require('mysql/lib/Connection');
+const router = express.Router();
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -66,6 +68,8 @@ exports.login = (req, res) => {
                 message: 'Please enter correct email or password!'
             });
         } else {
+            req.session.loggedin = true;
+            req.session.name = name;
             res.render('Index');
         }
 
@@ -73,6 +77,13 @@ exports.login = (req, res) => {
     })
 
 };
+
+// Logout user
+router.get('/logout', function (req, res) {
+    req.session.destroy();
+    req.flash('success', 'Login Again Here');
+    res.redirect('/login');
+  });
 
 
 

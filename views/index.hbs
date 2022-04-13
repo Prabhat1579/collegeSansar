@@ -26,10 +26,14 @@
             <li class="active"><a href="/college">College</a></li>
             <li><a href="/career">Careers</a></li>
             <li><a href="/Exam">Exams</a></li>
-            {{!-- <li><a href="#">Blog</a></li> --}}
             <li><a href="#">About</a></li>
-            <li class="btn btn-1" id="log"><a href="/Login">Log In</a></li>
-            <li class="btn" id="log"><a href="/Register">Register</a></li>
+            <li class="btn btn-1 login" id="log"><a href="/Login" style="color:white">Log In</a></li>
+            <li class="btn register" id="log"><a href="/Register" style="color:white">Register</a></li>
+           
+            {{#if loggedin}} <li class="btn btn-1" id="logout"> 
+                     <a href="/Login">Log Out</a>
+                     </li> {{/if}}
+
           </ul>
         </div>
       </nav>
