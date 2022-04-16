@@ -1,42 +1,21 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const dotenv = require("dotenv");
-const nodemon = require("nodemon");
-const mysql = require("mysql");
+const chalk = require('chalk');
+const express = require('express');
+const { PORT } = require('./config/env');
+const db = require('./config/db');
+const serveStaticAssets = require('./config/serveStatics');
+const middlewareInits = require('./config/middlewareInits');
 
-const app=express();
+const app = express();
 
-app.set("view engine", "hbs")
+db.connect();
+db.sequelize.sync();
+middlewareInits(app);
+serveStaticAssets(app);
 
-dotenv.config({
-  path: './.env'
-})
-
-const db = mysql.createConnection({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE
-
-});
-
-db.connect( (error) => {
-  if(error) {
-      console.log(error);
-  } else {
-      console.log("mySql Connected...");
-  }
-});
-
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static(__dirname+'/public/'));
-
-// defining routes
-
-app.use('/',require('./routes/page'));
-
+app.use('/', require('./routes/client'));
 app.use('/auth', require('./routes/auth'));
+app.use('/admin', require('./routes/admin'));
 
-app.listen(3000, () => {
-  console.log("server running in port 3000");
-})
+app.listen(PORT, () => {
+   console.log(chalk.bold.yellow(`server running in port ${PORT}`));
+});

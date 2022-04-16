@@ -1,179 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Colleges Sansar</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a href="/"><img src="assets/logo.png" alt="logo" /></a>
-        <div class="nav-links">
-          <ul>
-            <li><a href="/college">College</a></li>
-            <li><a href="/career">Careers</a></li>
-            <li><a href="/Exam">Exams</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">About</a></li>
-            <li class="btn btn-1" id="log"><a href="/Login">Log In</a></li>
-            <li class="btn" id="log"><a href="/Register">Register</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+<html lang='en'>
+   <head>
+      <meta charset='UTF-8' />
+      <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+      <title>Colleges Sansar</title>
+      <link rel='stylesheet' type='text/css' href='css/style.css' />
+      <link rel='preconnect' href='https://fonts.googleapis.com' />
+      <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+      <link
+         href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap'
+         rel='stylesheet'
+      />
+   </head>
+   <body>
+      <header>
+         <nav>
+            <a href='/'><img src='assets/logo.png' alt='logo' /></a>
+            <div class='nav-links'>
+               <ul>
+                  <li><a href='/college'>College</a></li>
+                  <li><a href='/career'>Careers</a></li>
+                  <li><a href='/Exam'>Exams</a></li>
+                  <li><a href='#'>Blog</a></li>
+                  <li><a href='#'>About</a></li>
+                  {{#if isLoggedIn}}
+                     <li>Hi {{username}}</li>
+                     <li class='btn' id='log'><a href='/auth/logout'>Log Out</a></li>
+                  {{/if}}
+                  {{#unless isLoggedIn}}
+                     <li class='btn btn-1' id='log'><a href='/Login'>Log In</a></li>
+                     <li class='btn' id='log'><a href='/Register'>Register</a></li>
+                  {{/unless}}
+               </ul>
+            </div>
+         </nav>
+      </header>
 
-    <div class="background">
-      <div class="text-box">
-        <h1 id="BestCollege">Find best Colleges in Nepal</h1>
+      <div class='background'>
+         <div class='text-box'>
+            <h1 id='BestCollege'>Find best Colleges in Nepal</h1>
 
-       <form action="" method="Post">
-           <p>
-          <input
-            type="text"
-            name="searchCollege"
-            id="SC1"
-            placeholder="Enter course colleges"
-          />
-          <input type="button" value="Search" id="SearchColleges" />
-        </p>
-       </form>
-       
-      </div>
-    </div>
+            <form action='' method='Post'>
+               <p>
+                  <input type='text' name='searchCollege' id='SC1' placeholder='Enter course colleges' />
+                  <input type='button' value='Search' id='SearchColleges' />
+               </p>
+            </form>
 
-    <div class="colleges">
-      <h1>Colleges in Nepal</h1>
-      <div class="container">
-        <div class="box arts">
-          <img src="assets/Artlogo.png" alt="" />
-          <h2>ARTS</h2>
-        </div>
-        <div class="box engineering">
-          <img src="assets/Architect.png" alt="" />
-          <h2>ENGINEERING</h2>
-        </div>
-        <div class="box med">
-          <img src="assets/Doctors Bag.png" alt="" />
-          <h2>MEDICINES</h2>
-        </div>
-        <div class="box edu">
-          <img src="assets/Homework.png" alt="" />
-          <h2>EDUCATION</h2>
-        </div>
-        <div class="box management">
-          <img src="assets/Management.png" alt="" />
-          <h2>MANAGEMENT</h2>
-        </div>
-        <div class="box science">
-          <img src="assets/Science Application.png" alt="" />
-          <h2>SCIENCE</h2>
-        </div>
-        <div class="box csc">
-          <img src="assets/System Information.png" alt="" />
-          <h2>COMPUTER SCIENCE</h2>
-        </div>
-        <div class="box architecture">
-          <img src="assets/25 De Abril Bridge.png" alt="" />
-          <h2>ARCHITECTURE</h2>
-        </div>
-        <div class="box design">
-          <img src="assets/Suit.png" alt="" />
-          <h2>DESIGN</h2>
-        </div>
-        <div class="box agriculture">
-          <img src="assets/Grass.png" alt="" />
-          <h2>AGRICULTURE</h2>
-        </div>
-        <div class="box nursing">
-          <img src="assets/Nurse.png" alt="" />
-          <h2>NURSING</h2>
-        </div>
-        <div class="box aviation">
-          <img src="assets/Airplane Mode On.png" alt="" />
-          <h2>AVIATION</h2>
-        </div>
+         </div>
       </div>
-    </div>
 
-    <section>
-      <div class="top">
-        <h1>Top colleges in Nepal</h1>
+      <div class='colleges'>
+         <h1>Colleges in Nepal</h1>
+         <div class='container'>
+            <div class='box arts'>
+               <img src='assets/Artlogo.png' alt='' />
+               <h2>ARTS</h2>
+            </div>
+            <div class='box engineering'>
+               <img src='assets/Architect.png' alt='' />
+               <h2>ENGINEERING</h2>
+            </div>
+            <div class='box med'>
+               <img src='assets/Doctors Bag.png' alt='' />
+               <h2>MEDICINES</h2>
+            </div>
+            <div class='box edu'>
+               <img src='assets/Homework.png' alt='' />
+               <h2>EDUCATION</h2>
+            </div>
+            <div class='box management'>
+               <img src='assets/Management.png' alt='' />
+               <h2>MANAGEMENT</h2>
+            </div>
+            <div class='box science'>
+               <img src='assets/Science Application.png' alt='' />
+               <h2>SCIENCE</h2>
+            </div>
+            <div class='box csc'>
+               <img src='assets/System Information.png' alt='' />
+               <h2>COMPUTER SCIENCE</h2>
+            </div>
+            <div class='box architecture'>
+               <img src='assets/25 De Abril Bridge.png' alt='' />
+               <h2>ARCHITECTURE</h2>
+            </div>
+            <div class='box design'>
+               <img src='assets/Suit.png' alt='' />
+               <h2>DESIGN</h2>
+            </div>
+            <div class='box agriculture'>
+               <img src='assets/Grass.png' alt='' />
+               <h2>AGRICULTURE</h2>
+            </div>
+            <div class='box nursing'>
+               <img src='assets/Nurse.png' alt='' />
+               <h2>NURSING</h2>
+            </div>
+            <div class='box aviation'>
+               <img src='assets/Airplane Mode On.png' alt='' />
+               <h2>AVIATION</h2>
+            </div>
+         </div>
       </div>
-      <p class="topCollege">
 
-      </p>
-      <div class="container-college">
-        <div class="boxes">
-          <img src="assets/KathmanduUniversity.png" alt="" />
-          <h3>Kathmandu University</h3>
-          <p>
-            Kathmandu University is a public autonomous university in Nepal. It
-            is the third oldest university in Nepal, located in Dhulikhel of
-            Kavrepalanchok District, about 30km east of Kathmandu. It was
-            established in 1991 with the motto "Quality Education for
-            Leadership."
-          </p>
-        </div>
-        <div class="boxes">
-          <img src="assets/NepalEngineeringcollege.png" alt="" />
-          <h3>Nepal Engineering College</h3>
-          <p>
-            The Nepal Engineering College was established in 1994 as the first
-            privately led not-for-profit social organization providing
-            engineering education in Nepal and is the largest engineering
-            college in terms annual student intake as well as in terms of area.
-            Its main campus is located at Changunarayan, Bhaktapur.
-          </p>
-        </div>
-        <div class="boxes">
-          <img src="assets/PokharaUniversity.png" alt="" />
-          <h3>Pokhara University</h3>
-          <p>
-            Pokhara University was established in 1997 as Nepal's fifth
-            university. Its central office is in Pokhara Lekhnath municipality,
-            Kaski district, Western Development Region. Along with Purbanchal
-            University, PU was formed as part of the government's policy for
-            improved access to higher education.
-          </p>
-        </div>
-      </div>
-    </section>
+      <section>
+         <div class='top'>
+            <h1>Top colleges in Nepal</h1>
+         </div>
+         <p class='topCollege'>
 
-    <div class="reviews">
-      <h1>College Reviews</h1>
-      <p class="reviewsP">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, harum.
-      </p>
-      <div class="review-container">
-        <div class="review">
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, nobis.</p>
-        </div>
-        <div class="review">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, delectus.</p>
-        </div>
-        <div class="review"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti, dignissimos!</p></div>
+         </p>
+         <div class='container-college'>
+            <div class='boxes'>
+               <img src='assets/KathmanduUniversity.png' alt='' />
+               <h3>Kathmandu University</h3>
+               <p>
+                  Kathmandu University is a public autonomous university in Nepal. It is the third oldest university in
+                  Nepal, located in Dhulikhel of Kavrepalanchok District, about 30km east of Kathmandu. It was
+                  established in 1991 with the motto "Quality Education for Leadership."
+               </p>
+            </div>
+            <div class='boxes'>
+               <img src='assets/NepalEngineeringcollege.png' alt='' />
+               <h3>Nepal Engineering College</h3>
+               <p>
+                  The Nepal Engineering College was established in 1994 as the first privately led not-for-profit social
+                  organization providing engineering education in Nepal and is the largest engineering college in terms
+                  annual student intake as well as in terms of area. Its main campus is located at Changunarayan,
+                  Bhaktapur.
+               </p>
+            </div>
+            <div class='boxes'>
+               <img src='assets/PokharaUniversity.png' alt='' />
+               <h3>Pokhara University</h3>
+               <p>
+                  Pokhara University was established in 1997 as Nepal's fifth university. Its central office is in
+                  Pokhara Lekhnath municipality, Kaski district, Western Development Region. Along with Purbanchal
+                  University, PU was formed as part of the government's policy for improved access to higher education.
+               </p>
+            </div>
+         </div>
+      </section>
+
+      <div class='reviews'>
+         <h1>College Reviews</h1>
+         <p class='reviewsP'>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, harum.
+         </p>
+         <div class='review-container'>
+            <div class='review'>
+               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, nobis.</p>
+            </div>
+            <div class='review'>
+               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, delectus.</p>
+            </div>
+            <div class='review'><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti, dignissimos!</p></div>
+         </div>
       </div>
-    </div>
-    <footer>
-      <div class="footers">
-        <a href="#">Community</a>
-        <a href="#">Company</a>
-        <a href="#"><img src="assets/logo.png" alt=""></a>
-        <a href="#">Help Desk</a>
-        <a href="#">Blog </a>
-      </div>
-      <div class="icons">
-        <a href="#"><img src="" alt="">Instagram</a>
-      </div>
-    </footer>
-  </body>
+      <footer>
+         <div class='footers'>
+            <a href='#'>Community</a>
+            <a href='#'>Company</a>
+            <a href='#'><img src='assets/logo.png' alt='' /></a>
+            <a href='#'>Help Desk</a>
+            <a href='#'>Blog </a>
+         </div>
+         <div class='icons'>
+            <a href='#'><img src='' alt='' />Instagram</a>
+         </div>
+      </footer>
+   </body>
 </html>
