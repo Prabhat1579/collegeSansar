@@ -1,89 +1,64 @@
-const mysql = require('mysql');
-const express = require("Express");
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const { append } = require('express/lib/response');
-const Connection = require('mysql/lib/Connection');
-const router = express.Router();
+const bcrypt = require('bcrypt');
+const User = require('../model/User');
+const hashPassword = require('./utils/hashPassword');
 
-const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE
+const register = (req, res) => {
+   try {
+      const { name, email, password, confirmPassword } = req.body;
+      if (password !== confirmPassword) throw new Error('Passwords do not match');
 
-});
+      const hashedPassword = hashPassword(password);
 
-exports.Register = (req, res) => {
-    console.log(req.body);
+      const user = User.build({ name, email, password: hashedPassword });
 
-    const { name, email, password, passwordConfirm } = req.body;
-
-    db.query('SELECT Email from userlogin WHERE Email = ?', [email], async (error, results) =>{
-        if(error){
-            console.log(error);
-        } 
-        
-        if(results.length > 0 ){
-            return res.render('Register', {
-                message: 'That email already exist'
-            }) 
-            } else if( password !== passwordConfirm){
-                return res.render('Register', {
-                    message: 'Passwords do not match'
-                });
-        }
-        
-        let hashedPassword = await bcrypt.hash(password, 8);
-        console.log(hashedPassword);
-    });
-    
-    db.query('INSERT INTO userlogin SET ?', {name: name, email: email, password: password }, (error, results) =>
-    {
-        if(error){
-        console.log(error);
-    } else {
-        return res.render('Register', {
-            message: 'user Registered Successfully!'
-        });
-    }
-
-});
+      user
+         .save()
+         .then(() => {
+            res.render('/');
+         })
+         .catch((err) => {
+            throw new Error(err.message);
+         });
+   } catch (err) {
+      //* TODO
+      res.send(`FAILED: ${err.message}`);
+   }
 };
 
+const login = async (req, res) => {
+   try {
+      const { email, password } = req.body;
+      const user = await User.findOne({ where: { email } });
+      if (!user) throw new Error('Invalid Email/Password');
 
+      const passwordMatch = bcrypt.compareSync(password, user.password);
+      if (!passwordMatch) throw new Error('Invalid Email/Password');
 
-// login code
-exports.login = (req, res) => {
-    console.log(req.body);
+      req.session.userId = user.id;
+      req.session.username = user.name;
+      req.session.isLoggedIn = true;
 
-    const {email, password} = req.body;
-
-    db.query('Select * from userlogin where email = ? and password = ?',[email, password], (error, results, fields) => {
-
-        if(error) throw error
-
-        if(results.length <= 0){
-            return res.render('login', {
-                message: 'Please enter correct email or password!'
-            });
-        } else {
-            req.session.loggedin = true;
-            req.session.name = name;
-            res.render('Index');
-        }
-
-        
-    })
-
+      res.redirect('/');
+   } catch (err) {
+      //* TODo
+      res.send(`FAILED: ${err.message}`);
+   }
 };
 
-// Logout user
-router.get('/logout', function (req, res) {
-    req.session.destroy();
-    req.flash('success', 'Login Again Here');
-    res.redirect('/login');
-  });
+const logout = (req, res) => {
+   try {
+      req.session.destroy();
 
+      //* TODo
+      res.redirect('/');
+   } catch (err) {
+      //* TODo
+      res.send(`FAILED: ${err.message}`);
+   }
+};
 
-
+module.exports = {
+   register,
+   login,
+   logout,
+};
