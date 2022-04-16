@@ -1,5 +1,6 @@
 const express = require('express');
-const { createCollege } = require('../controller/admin/college');
+const { createCollege, deleteCollege } = require('../controller/admin/college');
+const College = require('../model/College');
 const router = express.Router();
 
 // * GET ROUTES
@@ -8,8 +9,18 @@ router.get('/', (req, res) => {
    res.render('admin_index');
 });
 
-router.get('/college', (req, res) => {
-   res.render('admin_college');
+router.get('/college', async (req, res) => {
+   const collegeList = await College.findAll();
+
+   res.render('admin_college', {
+      colleges: collegeList.map(({ name, fee, description, thumbnail, id }) => ({
+         name,
+         fee,
+         description,
+         thumbnail,
+         formAction: `/admin/college/delete/${id}`,
+      })),
+   });
 });
 
 router.get('/career', (req, res) => {
@@ -39,6 +50,7 @@ router.post('/login', (req, res) => {
 router.post('/register', (req, res) => {});
 
 router.post('/college', createCollege);
+router.post('/college/delete/:college_id', deleteCollege);
 
 router.post('/career', (req, res) => {});
 
