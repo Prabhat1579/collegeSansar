@@ -12,8 +12,31 @@
          crossorigin='anonymous'
       />
    </head>
-   <body class='p-4'>
-      <div class='col-12 col-sm-6 mx-auto my-5'>
+   <body>
+
+      <nav class='px-4 navbar navbar-expand-lg navbar-light bg-light'>
+         <a class='navbar-brand' href='/admin'>Admin</a>
+         <button
+            class='navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarNavAltMarkup'
+            aria-controls='navbarNavAltMarkup'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+         >
+            <span class='navbar-toggler-icon'></span>
+         </button>
+         <div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
+            <div class='navbar-nav'>
+               <a class='nav-item nav-link' href='/admin/college'>College</a>
+               <a class='nav-item nav-link active' href='/admin/career'>Career</a>
+               <a class='nav-item nav-link' href='/admin/exam'>Exam</a>
+            </div>
+         </div>
+      </nav>
+
+      <div class='col-12 col-sm-6 px-4 mx-auto my-5'>
          <h4>Add Career</h4>
          <form action=''>
             <div class='my-2'>

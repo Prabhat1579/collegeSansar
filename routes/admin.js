@@ -1,11 +1,12 @@
 const express = require('express');
 const { createCollege } = require('../controller/admin/college');
-const College = require('../model/College');
 const router = express.Router();
 
 // * GET ROUTES
 
-router.get('/', (req, res) => {});
+router.get('/', (req, res) => {
+   res.render('admin_index');
+});
 
 router.get('/college', (req, res) => {
    res.render('admin_college');
