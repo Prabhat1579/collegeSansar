@@ -42,42 +42,16 @@
                </div>
             </div>
             <div class='college'>
-               <div class='college-items'>
-                  <img src='assets/KathmanduUniversity.png' alt='' />
-                  <h3>Kathmandu University</h3>
-                  <p>Average Fees 60,000/year</p>
-                  <div>
-
+               {{#each colleges}}
+                  <div class='college-items'>
+                     <img src={{this.img}} alt={{this.name}} />
+                     <h3>{{this.name}}</h3>
+                     <p>{{this.fee}}</p>
+                     <p>
+                        <small>{{this.description}}</small>
+                     </p>
                   </div>
-               </div>
-               <div class='college-items'>
-                  <img src='assets/NepalEngineeringcollege.png' alt='' />
-                  <h3>Nepal Engineering College</h3>
-                  <p>Average Fees 50,000/year</p>
-               </div>
-               <div class='college-items'>
-                  <img src='assets/PokharaUniversity.png' alt='' />
-                  <h3>Pokhara University </h3>
-                  <p>Average Fees 80,000/year</p>
-               </div>
-               <div class='college-items'>
-                  <img src='' alt='' />
-               </div>
-               <div class='college-items'>
-                  <img src='' alt='' />
-               </div>
-               <div class='college-items'>
-                  <img src='' alt='' />
-               </div>
-               <div class='college-items'>
-                  <img src='' alt='' />
-               </div>
-               <div class='college-items'>
-                  <img src='' alt='' />
-               </div>
-               <div class='college-items'>
-                  <img src='' alt='' />
-               </div>
+               {{/each}}
             </div>
          </div>
 
