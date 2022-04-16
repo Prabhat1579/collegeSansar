@@ -14,6 +14,8 @@ const College = sequelize.define('college', {
 
    name: { type: Sequelize.STRING, allowNull: false },
 
+   thumbnail: { type: Sequelize.STRING, allowNull: true },
+
    description: { type: Sequelize.STRING, allowNull: false },
 
    fee: { type: Sequelize.STRING, allowNull: false },

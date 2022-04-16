@@ -8,7 +8,7 @@ const { SECRET_KEY } = require('./env');
 
 const middlewareInits = (app) => {
    app.use(morgan('common'));
-   app.use(helmet());
+   // app.use(helmet());
    app.use(cors());
    app.use(
       session({

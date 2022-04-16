@@ -14,21 +14,34 @@
    </head>
    <body class='p-4'>
       <div class='col-12 col-sm-6 mx-auto my-5'>
+
          <h4>Add College</h4>
-         <form action=''>
+
+         {{#if collegeCreated}}
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+               College Added Successfully!
+               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+         {{/if}}
+
+         <form action='/admin/college' method='POST'>
             <div class='my-2'>
                <label for='name'>College Name</label>
-               <input class='form-control' type='text' id='name' />
+               <input class='form-control' name='name' type='text' id='name' />
             </div>
             <div class='my-2'>
                <label for='fee'>College Fee</label>
-               <input class='form-control' type='text' id='fee' />
+               <input class='form-control' name='fee' type='text' id='fee' />
             </div>
             <div class='my-2'>
-               <label for='image'>Featured Image</label>
-               <input class='form-control' type='text' id='image' />
+               <label for='description'>College Description</label>
+               <textarea class='form-control' name='description' type='text' id='description'></textarea>
             </div>
             <div class='my-2'>
+               <label for='thumbnail'>Featured Image</label>
+               <input class='form-control' placeholder='enter image name' name='thumbnail' type='text' id='thumbnail' />
+            </div>
+            <div class='my-3'>
                <button class='btn btn-primary'>Add College</button>
             </div>
          </form>
@@ -40,5 +53,10 @@
          integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p'
          crossorigin='anonymous'
       ></script>
+
+      <script>
+         var alertList = document.querySelectorAll('.alert'); var alerts = [].slice.call(alertList).map(function
+         (element) { return new bootstrap.Alert(element) })
+      </script>
    </body>
 </html>
