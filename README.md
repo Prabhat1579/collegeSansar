@@ -5,5 +5,5 @@
 -  `npm install`
 -  edit the env variables, check .env.example - create .env file in same path
 -  `npm run dev`
--  go to `/admin`
+-  go to `/admin` in browser
 -  create your data (no seeders at the moment)
