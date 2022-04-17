@@ -1,5 +1,6 @@
 const express = require('express');
 const College = require('../model/College');
+const Sequelize = require('sequelize');
 
 const router = express.Router();
 
@@ -11,6 +12,22 @@ router.get('/', (req, res) => {
 
 router.get('/college', async (req, res) => {
    const collegeList = await College.findAll();
+
+   res.render('college', {
+      colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
+         name,
+         category,
+         description,
+         link: `/college/${id}`,
+         img: `/assets/${thumbnail}`,
+      })),
+   });
+});
+
+router.post('/search-college', async (req, res) => {
+   const { search } = req.body;
+   const Op = Sequelize.Op;
+   const collegeList = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
 
    res.render('college', {
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({

@@ -23,18 +23,37 @@
    </head>
    <body>
       <header>
-         <nav>
+         <nav class='m-3'>
             <a href='/'><img src='assets/logo.png' alt='logo' /></a>
-            <div class='nav-links'>
-               <ul>
-                  <li class='active'><a href='#'>College</a></li>
-                  <li><a href='/career'>Careers</a></li>
-                  <li><a href='/Exam'>Exams</a></li>
-                  {{! <li><a href="#">Blog</a></li> }}
-                  <li><a href='#'>About</a></li>
-                  <li class='btn btn-1' id='log'><a href='/Login'>Log In</a></li>
-                  <li class='btn' id='log'><a href='/Register'>Register</a></li>
+            <div class='nav-links p-0 d-flex justify-content-between align-items-center'>
+               <ul class='m-0 d-flex align-items-center justify-content-between w-100 px-4'>
+                  <div class='d-flex gap-3'>
+                     <li><a href='/college'>College</a></li>
+                     <li><a href='/career'>Careers</a></li>
+                     <li><a href='/Exam'>Exams</a></li>
+                  </div>
+
+                  <div class='d-flex gap-2'>
+                     {{#unless isLoggedIn}}
+                        <a
+                           class='btn btn-primary d-flex align-items-center justify-content-center py-3 text-light'
+                           href='/Login'
+                        >Log In</a>
+                        <a
+                           class='btn btn-primary d-flex align-items-center justify-content-center py-3 text-light'
+                           href='/Register'
+                        >Register</a>
+                     {{/unless}}
+                  </div>
                </ul>
+               <div class='d-flex align-items-center gap-3'>
+                  {{#if isLoggedIn}}
+                     <span style='white-space: nowrap;'>Hi {{username}}</span>
+                     <div class='btn btn-primary text-white p-0 d-flex align-items-center justify-content-center py-3'>
+                        <a class='text-light text-decoration-none p-0' href='/auth/logout'>Log Out</a>
+                     </div>
+                  {{/if}}
+               </div>
             </div>
          </nav>
          <hr />
