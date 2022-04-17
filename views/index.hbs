@@ -127,42 +127,23 @@
          </div>
       </div>
 
-      <section>
-         <div class='top'>
+      <section class='p-5'>
+         <div>
             <h1>Popular Colleges</h1>
          </div>
-         <p class='topCollege'>
 
-         </p>
-         <div class='container-college'>
-            <div class='boxes'>
-               <img src='assets/KathmanduUniversity.png' alt='' />
-               <h3>Kathmandu University</h3>
-               <p>
-                  Kathmandu University is a public autonomous university in Nepal. It is the third oldest university in
-                  Nepal, located in Dhulikhel of Kavrepalanchok District, about 30km east of Kathmandu. It was
-                  established in 1991 with the motto "Quality Education for Leadership."
-               </p>
-            </div>
-            <div class='boxes'>
-               <img src='assets/NepalEngineeringcollege.png' alt='' />
-               <h3>Nepal Engineering College</h3>
-               <p>
-                  The Nepal Engineering College was established in 1994 as the first privately led not-for-profit social
-                  organization providing engineering education in Nepal and is the largest engineering college in terms
-                  annual student intake as well as in terms of area. Its main campus is located at Changunarayan,
-                  Bhaktapur.
-               </p>
-            </div>
-            <div class='boxes'>
-               <img src='assets/PokharaUniversity.png' alt='' />
-               <h3>Pokhara University</h3>
-               <p>
-                  Pokhara University was established in 1997 as Nepal's fifth university. Its central office is in
-                  Pokhara Lekhnath municipality, Kaski district, Western Development Region. Along with Purbanchal
-                  University, PU was formed as part of the government's policy for improved access to higher education.
-               </p>
-            </div>
+         <div class='container-college d-flex justify-content-start gap-3 flex-wrap'>
+            {{#each colleges}}
+               <a href={{this.link}} class='boxes shadow-sm rounded text-decoration-none text-muted'>
+                  <img class='rounded' src={{this.img}} alt={{this.name}} />
+                  <h3 class='lead'>{{this.name}}</h3>
+                  <div class='small my-2'>category: {{this.category}}</div>
+                  <div class='small mt-3 mb-2'>
+                     {{this.description}}
+                  </div>
+               </a>
+            {{/each}}
+
          </div>
       </section>
 

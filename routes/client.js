@@ -4,10 +4,22 @@ const Sequelize = require('sequelize');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-   const { userId, username, isLoggedIn } = req.session;
-   console.log(username, userId);
-   res.render('index', { username, isLoggedIn });
+router.get('/', async (req, res) => {
+   const { username, isLoggedIn } = req.session;
+   const collegeList = await College.findAll();
+   const colleges = collegeList.sort((a, b) => a.viewsCount - b.viewsCount).slice(0, 3);
+
+   res.render('index', {
+      username,
+      isLoggedIn,
+      colleges: colleges.map(({ id, name, category, description, thumbnail }) => ({
+         name,
+         category,
+         description,
+         link: `/college/${id}`,
+         img: `/assets/${thumbnail}`,
+      })),
+   });
 });
 
 router.get('/college', async (req, res) => {
@@ -26,11 +38,14 @@ router.get('/college', async (req, res) => {
 });
 
 router.post('/search-college', async (req, res) => {
+   const { username, isLoggedIn } = req.session;
    const { search } = req.body;
    const Op = Sequelize.Op;
    const collegeList = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
 
    res.render('college', {
+      username,
+      isLoggedIn,
       title: `Search Results for " ${search} "`,
       noResults: collegeList.map((i) => i.id).length < 1,
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
@@ -44,11 +59,14 @@ router.post('/search-college', async (req, res) => {
 });
 
 router.get('/search-college/:category', async (req, res) => {
+   const { username, isLoggedIn } = req.session;
    const { category } = req.params;
    const Op = Sequelize.Op;
    const collegeList = await College.findAll({ where: { category: { [Op.like]: `%${category}%` } } });
 
    res.render('college', {
+      username,
+      isLoggedIn,
       title: `Colleges for " ${category} "`,
       noResults: collegeList.map((i) => i.id).length < 1,
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
@@ -62,14 +80,14 @@ router.get('/search-college/:category', async (req, res) => {
 });
 
 router.get('/college/:college_id', async (req, res) => {
+   const { username, isLoggedIn } = req.session;
    const { college_id } = req.params;
 
    const college = await College.findByPk(college_id);
-
-   console.log(req.session);
+   await College.update({ viewsCount: college.viewsCount + 1 }, { where: { id: college_id } });
 
    const { id, name, category, description, courses } = college;
-   res.render('college_single', { id, name, category, description, courses, isLoggedIn: req.session.isLoggedIn });
+   res.render('college_single', { username, isLoggedIn, id, name, category, description, courses });
 });
 router.post('/college/submit_review', async (req, res) => {
    const { title, description } = req.body;
