@@ -14,7 +14,7 @@ const register = (req, res) => {
       user
          .save()
          .then(() => {
-            res.render('/');
+            res.redirect('/');
          })
          .catch((err) => {
             throw new Error(err.message);
