@@ -20,6 +20,8 @@ const College = sequelize.define('college', {
 
    fee: { type: Sequelize.STRING, allowNull: false },
 
+   viewsCount: { type: Sequelize.INTEGER, defaultValue: 0 },
+
    category: {
       type: Sequelize.ENUM(
          'Arts',
