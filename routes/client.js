@@ -39,9 +39,15 @@ router.get('/college', async (req, res) => {
 
 router.post('/search-college', async (req, res) => {
    const { username, isLoggedIn } = req.session;
-   const { search } = req.body;
+   const { search, option } = req.body;
    const Op = Sequelize.Op;
-   const collegeList = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
+
+   let collegeList = [];
+   if (option === 'location') {
+      collegeList = await College.findAll({ where: { location: { [Op.like]: `%${search}%` } } });
+   } else {
+      collegeList = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
+   }
 
    res.render('college', {
       username,

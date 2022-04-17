@@ -61,13 +61,17 @@
             <h1 id='BestCollege'>Find best Colleges in Nepal</h1>
 
             <form action='/search-college' method='POST'>
-               <p>
-                  <input type='text' name='search' id='SC1' placeholder='Enter course colleges' />
+               <div class='d-flex justify-content-center gap-2'>
+                  <input class='form-control' type='text' name='search' id='SC1' placeholder='Enter course colleges' />
+                  <select style='width: 10%;' class='form-select' name='option' aria-label='Default select example'>
+                     <option value='name' selected>by name</option>
+                     <option value='location'>by location</option>
+                  </select>
                   <button
-                     class='p-2 text-light px-5 m-0'
-                     style='height: 100%; background-color: #F24E1E;'
+                     class='btn text-light m-0'
+                     style='height: 100%; padding: 10px 20px; background-color: #F24E1E;'
                   >Search</button>
-               </p>
+               </div>
             </form>
 
          </div>
