@@ -20,7 +20,23 @@ const College = sequelize.define('college', {
 
    fee: { type: Sequelize.STRING, allowNull: false },
 
-   isAmongTopColleges: { type: Sequelize.BOOLEAN, defaultValue: false },
+   category: {
+      type: Sequelize.ENUM(
+         'Arts',
+         'Engineering',
+         'Medicine',
+         'Nursing',
+         'Education',
+         'Management',
+         'Science',
+         'Computer Science',
+         'Architecture',
+         'Design',
+         'Agriculture',
+         'Aviation'
+      ),
+      allowNull: false,
+   },
 
    date: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
 });
