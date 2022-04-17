@@ -24,7 +24,7 @@
    <body>
       <header>
          <nav class='m-3'>
-            <a href='/'><img src='assets/logo.png' alt='logo' /></a>
+            <a href='/'><img src='/assets/logo.png' alt='logo' /></a>
             <div class='nav-links p-0 d-flex justify-content-between align-items-center'>
                <ul class='m-0 d-flex align-items-center justify-content-between w-100 px-4'>
                   <div class='d-flex gap-3'>
@@ -60,7 +60,6 @@
       </header>
 
       <main>
-         <h1>Colleges</h1>
 
          <div class='container-location'>
             <div class='search'>
@@ -68,21 +67,32 @@
                   <p><input type='text' name='SearchLocation' id='SL1' placeholder='Search By Location' /></p>
                </div>
             </div>
-            <div class='college'>
-               {{#each colleges}}
-                  <a class='college-items shadow-sm rounded text-muted text-decoration-none' href={{this.link}}>
-                     <img class='rounded-top' src={{this.img}} alt={{this.name}} />
-                     <div class='p-2'>
-                        <h4>{{this.name}}</h4>
-                        <div class='my-2'>
-                           <small>category: {{this.category}}</small>
+
+            <div class='d-flex flex-column px-4'>
+               <h4 class='mb-5'>
+                  Results for &#65282;{{searchTitle}}&#65282;
+               </h4>
+
+               {{#if noResults}}
+                  <h5 class=''>No Results Found.</h5>
+               {{/if}}
+
+               <div class='d-flex flex-wrap gap-3'>
+                  {{#each colleges}}
+                     <a class='college-items shadow-sm rounded text-muted text-decoration-none' href={{this.link}}>
+                        <img class='rounded-top' src={{this.img}} alt={{this.name}} />
+                        <div class='p-2'>
+                           <h4>{{this.name}}</h4>
+                           <div class='my-2'>
+                              <small>category: {{this.category}}</small>
+                           </div>
+                           <div>
+                              <small>{{this.description}}</small>
+                           </div>
                         </div>
-                        <div>
-                           <small>{{this.description}}</small>
-                        </div>
-                     </div>
-                  </a>
-               {{/each}}
+                     </a>
+                  {{/each}}
+               </div>
             </div>
          </div>
 

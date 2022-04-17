@@ -61,20 +61,20 @@
       </header>
 
       <main class='p-3'>
-         <h2 class='mb-4'>COLLEGE NAME</h2>
+         <h2 class='mb-4'>{{name}}</h2>
 
          <div class='d-flex flex-column flex-sm-row gap-3'>
             <div class=''>
                <img class='rounded img-fluid' height='200' src='/assets/KathmanduUniversity.png' alt='' />
                <button class='btn btn-sm p-0 my-2 btn-primary'>Write a Review</button>
             </div>
-            <div class='p-2 flex-grow-1'>
+            <div class='p-2 flex-grow-1 w-100'>
                <div class='mb-4'>
                   <h4 class='lead'>
                      Category
                   </h4>
                   <small>
-                     Arts
+                     {{category}}
                   </small>
                </div>
                <div class='mb-4'>
@@ -82,8 +82,7 @@
                      Description
                   </h4>
                   <small>
-                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus quod, maxime accusantium nam
-                     iste nobis veniam necessitatibus doloremque exercitationem officiis?
+                     {{description}}
                   </small>
                </div>
                <div class='mb-4'>
@@ -91,15 +90,16 @@
                      Courses Offered
                   </h4>
                   <small>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis officiis optio commodi
-                     molestiae magni harum reprehenderit. Minus eaque saepe quibusdam!
+                     {{courses}}
                   </small>
                </div>
 
                <h5 class='mt-4' id='write-review'>Write Your Review</h5>
-               <div class='alert small px-4 py-2 alert-danger' role='alert'>
-                  Please Login to add your review!
-               </div>
+               {{#unless isLoggedIn}}
+                  <div class='alert small px-4 py-2 alert-danger' role='alert'>
+                     Please Login to add your review!
+                  </div>
+               {{/unless}}
 
                <div class='border rounded px-4 py-2'>
 

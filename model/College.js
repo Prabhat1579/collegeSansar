@@ -29,6 +29,11 @@ const College = sequelize.define('college', {
       allowNull: false,
    },
 
+   courses: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+   },
+
    date: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
 });
 

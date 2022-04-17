@@ -30,6 +30,26 @@ router.post('/search-college', async (req, res) => {
    const collegeList = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
 
    res.render('college', {
+      searchTitle: search,
+      noResults: collegeList.map((i) => i.id).length < 1,
+      colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
+         name,
+         category,
+         description,
+         link: `/college/${id}`,
+         img: `/assets/${thumbnail}`,
+      })),
+   });
+});
+
+router.get('/search-college/:category', async (req, res) => {
+   const { category } = req.params;
+   const Op = Sequelize.Op;
+   const collegeList = await College.findAll({ where: { category: { [Op.like]: `%${category}%` } } });
+
+   res.render('college', {
+      searchTitle: category,
+      noResults: collegeList.map((i) => i.id).length < 1,
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
          name,
          category,
@@ -41,7 +61,14 @@ router.post('/search-college', async (req, res) => {
 });
 
 router.get('/college/:college_id', async (req, res) => {
-   res.render('college_single');
+   const { college_id } = req.params;
+
+   const college = await College.findByPk(college_id);
+
+   console.log(req.session);
+
+   const { id, name, category, description, courses } = college;
+   res.render('college_single', { id, name, category, description, courses, isLoggedIn: req.session.isLoggedIn });
 });
 router.post('/college/submit_review', async (req, res) => {
    const { title, description } = req.body;
