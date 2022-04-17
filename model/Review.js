@@ -19,7 +19,7 @@ const Review = sequelize.define('review', {
       allowNull: false,
       references: {
          model: College,
-         key: id,
+         key: 'id',
       },
    },
 
@@ -28,7 +28,7 @@ const Review = sequelize.define('review', {
       allowNull: false,
       references: {
          model: User,
-         key: id,
+         key: 'id',
       },
    },
 

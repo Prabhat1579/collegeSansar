@@ -1,6 +1,7 @@
 const express = require('express');
 const College = require('../model/College');
 const Sequelize = require('sequelize');
+const Review = require('../model/Review');
 
 const router = express.Router();
 
@@ -88,15 +89,36 @@ router.get('/search-college/:category', async (req, res) => {
 router.get('/college/:college_id', async (req, res) => {
    const { username, isLoggedIn } = req.session;
    const { college_id } = req.params;
+   const { collegeApplied, reviewAdded } = req.query;
 
    const college = await College.findByPk(college_id);
    await College.update({ viewsCount: college.viewsCount + 1 }, { where: { id: college_id } });
 
    const { id, name, category, description, courses } = college;
-   res.render('college_single', { username, isLoggedIn, id, name, category, description, courses });
+   res.render('college_single', {
+      username,
+      isLoggedIn,
+      id,
+      name,
+      category,
+      description,
+      courses,
+      createReviewLink: `/review/create/${college_id}`,
+
+      collegeApplied,
+      reviewAdded,
+   });
 });
-router.post('/college/submit_review', async (req, res) => {
-   const { title, description } = req.body;
+
+router.post('/review/create/:college_id', async (req, res) => {
+   const { userId } = req.session;
+   const { college_id } = req.params;
+   const { title, description, rating } = req.body;
+
+   const review = Review.build({ user_id: userId, college_id, title, description, rate: rating });
+   await review.save();
+
+   res.redirect(`/college/${college_id}?reviewAdded=true`);
 });
 
 router.get('/exam', (req, res) => {

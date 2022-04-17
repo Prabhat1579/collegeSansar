@@ -69,7 +69,21 @@
                <img class='rounded img-fluid' height='200' src='/assets/KathmanduUniversity.png' alt='' />
                <button class='btn btn-sm p-0 my-2 btn-primary'>Write a Review</button>
                <button class='btn btn-sm p-0 my-2 btn-primary'>Apply</button>
+
+               <div class='my-2'>
+                  {{#if reviewAdded}}
+                     <div class='alert p-2 px-3 small alert-success' role='alert'>
+                        Your review has been added!
+                     </div>
+                  {{/if}}
+
+                  {{#if collegeApplied}}
+                     <div class='alert p-2 px-3 small alert-success' role='alert'>
+                        Applied Successfully! We will reach out to you soon.
+                     </div>{{/if}}
+               </div>
             </div>
+
             <div class='p-2 flex-grow-1 w-100'>
                <div class='mb-4'>
                   <h4 class='lead'>
@@ -105,7 +119,7 @@
 
                <div class='border rounded px-4 py-2'>
 
-                  <form action='/review/create/:college_id' method='POST'>
+                  <form action={{createReviewLink}} method='POST'>
                      <div class='my-2'>
                         <label for='title'>Review Title</label>
                         <input class='form-control' type='text' id='title' name='title' />
