@@ -46,6 +46,7 @@
                         >Register</a>
                      {{/unless}}
                   </div>
+
                </ul>
                <div class='d-flex align-items-center gap-3'>
                   {{#if isLoggedIn}}
@@ -67,6 +68,7 @@
             <div class=''>
                <img class='rounded img-fluid' height='200' src='/assets/KathmanduUniversity.png' alt='' />
                <button class='btn btn-sm p-0 my-2 btn-primary'>Write a Review</button>
+               <button class='btn btn-sm p-0 my-2 btn-primary'>Apply</button>
             </div>
             <div class='p-2 flex-grow-1 w-100'>
                <div class='mb-4'>
@@ -103,7 +105,7 @@
 
                <div class='border rounded px-4 py-2'>
 
-                  <form action=''>
+                  <form action='/review/create/:college_id' method='POST'>
                      <div class='my-2'>
                         <label for='title'>Review Title</label>
                         <input class='form-control' type='text' id='title' name='title' />
@@ -138,7 +140,11 @@
                         </label>
                      </div>
                      <div class='my-3'>
-                        <button disabled='true' class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
+                        {{#if isLoggedIn}}
+                           <button class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
+                        {{else}}
+                           <button disabled='true' class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
+                        {{/if}}
                      </div>
                   </form>
                </div>
