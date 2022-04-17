@@ -49,16 +49,22 @@
 
          <form action='/admin/college' method='POST'>
             <div class='my-2'>
-               <label for='name'>College Name</label>
+               <label for='name'>Name</label>
                <input class='form-control' name='name' type='text' id='name' />
             </div>
+
             <div class='my-2'>
-               <label for='fee'>College Fee</label>
+               <label for='location'>Location</label>
+               <input class='form-control' name='location' type='text' id='location' />
+            </div>
+
+            <div class='my-2'>
+               <label for='fee'>Base Fee</label>
                <input class='form-control' name='fee' type='text' id='fee' />
             </div>
 
             <div class='my-2'>
-               <label for='category'>College Category</label>
+               <label for='category'>Category</label>
                <input class='form-control' name='category' type='text' id='category' />
                <small class='text-muted'>Available Options: Arts, Science, Computer Science, Engineering, Medicine,
                   Nursing, Architecture, Agriculture, Design, Aviation</small>
@@ -70,7 +76,7 @@
             </div>
 
             <div class='my-2'>
-               <label for='description'>College Description</label>
+               <label for='description'>Description</label>
                <textarea class='form-control' name='description' type='text' id='description'></textarea>
             </div>
 

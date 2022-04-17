@@ -13,11 +13,12 @@ router.get('/college', async (req, res) => {
    const collegeList = await College.findAll();
 
    res.render('college', {
-      colleges: collegeList.map(({ name, fee, description, thumbnail }) => ({
+      colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
          name,
-         fee,
+         category,
          description,
-         img: `assets/${thumbnail}`,
+         link: `/college/${id}`,
+         img: `/assets/${thumbnail}`,
       })),
    });
 });

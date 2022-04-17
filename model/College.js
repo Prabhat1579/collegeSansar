@@ -18,25 +18,14 @@ const College = sequelize.define('college', {
 
    description: { type: Sequelize.TEXT, allowNull: false },
 
-   fee: { type: Sequelize.STRING, allowNull: false },
+   fee: { type: Sequelize.STRING, allowNull: true },
+
+   location: { type: Sequelize.TEXT, allowNull: true },
 
    viewsCount: { type: Sequelize.INTEGER, defaultValue: 0 },
 
    category: {
-      type: Sequelize.ENUM(
-         'Arts',
-         'Engineering',
-         'Medicine',
-         'Nursing',
-         'Education',
-         'Management',
-         'Science',
-         'Computer Science',
-         'Architecture',
-         'Design',
-         'Agriculture',
-         'Aviation'
-      ),
+      type: Sequelize.STRING,
       allowNull: false,
    },
 
