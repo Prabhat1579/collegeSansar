@@ -22,6 +22,13 @@ router.get('/college', async (req, res) => {
    });
 });
 
+router.get('/college/:college_id', async (req, res) => {
+   res.render('college_single');
+});
+router.post('/college/submit_review', async (req, res) => {
+   const { title, description } = req.body;
+});
+
 router.get('/exam', (req, res) => {
    res.render('exam');
 });
