@@ -14,6 +14,7 @@ router.get('/college', async (req, res) => {
    const collegeList = await College.findAll();
 
    res.render('college', {
+      title: 'Colleges',
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
          name,
          category,
@@ -30,7 +31,7 @@ router.post('/search-college', async (req, res) => {
    const collegeList = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
 
    res.render('college', {
-      searchTitle: search,
+      title: `Search Results for " ${search} "`,
       noResults: collegeList.map((i) => i.id).length < 1,
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
          name,
@@ -48,7 +49,7 @@ router.get('/search-college/:category', async (req, res) => {
    const collegeList = await College.findAll({ where: { category: { [Op.like]: `%${category}%` } } });
 
    res.render('college', {
-      searchTitle: category,
+      title: `Colleges for " ${category} "`,
       noResults: collegeList.map((i) => i.id).length < 1,
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
          name,

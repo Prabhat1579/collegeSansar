@@ -62,19 +62,19 @@
       <main>
 
          <div class='container-location'>
-            <div class='search'>
+            {{! <div class='search'>
                <div class='location-box'>
                   <p><input type='text' name='SearchLocation' id='SL1' placeholder='Search By Location' /></p>
                </div>
-            </div>
+            </div> }}
 
             <div class='d-flex flex-column px-4'>
-               <h4 class='mb-5'>
-                  Results for &#65282;{{searchTitle}}&#65282;
+               <h4 class='mb-3'>
+                  {{title}}
                </h4>
 
                {{#if noResults}}
-                  <h5 class=''>No Results Found.</h5>
+                  <h5 class=''>No Colleges Found.</h5>
                {{/if}}
 
                <div class='d-flex flex-wrap gap-3'>
