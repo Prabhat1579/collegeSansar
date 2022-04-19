@@ -1,7 +1,10 @@
+const chalk = require('chalk');
 const express = require('express');
 const College = require('../model/College');
 const Sequelize = require('sequelize');
 const Review = require('../model/Review');
+const Apply = require('../model/Apply');
+const User = require('../model/User');
 
 const router = express.Router();
 
@@ -94,6 +97,14 @@ router.get('/college/:college_id', async (req, res) => {
    const college = await College.findByPk(college_id);
    await College.update({ viewsCount: college.viewsCount + 1 }, { where: { id: college_id } });
 
+   let reviews = await Review.findAll({ where: { college_id } });
+   reviews = await Promise.all(
+      reviews.map(async (review) => {
+         review.user = await User.findOne({ where: { id: review.user_id } });
+         return review;
+      })
+   );
+
    const { id, name, category, description, courses } = college;
    res.render('college_single', {
       username,
@@ -104,6 +115,14 @@ router.get('/college/:college_id', async (req, res) => {
       description,
       courses,
       createReviewLink: `/review/create/${college_id}`,
+      applyLink: `apply/${college_id}`,
+
+      reviews: reviews.map(({ user, title, description, rate }) => ({
+         username: user.name,
+         title,
+         description,
+         rate,
+      })),
 
       collegeApplied,
       reviewAdded,
@@ -119,6 +138,16 @@ router.post('/review/create/:college_id', async (req, res) => {
    await review.save();
 
    res.redirect(`/college/${college_id}?reviewAdded=true`);
+});
+
+router.get('/college/apply/:college_id', async (req, res) => {
+   const { userId } = req.session;
+   const { college_id } = req.params;
+
+   const apply = Apply.build({ user_id: userId, college_id });
+   await apply.save();
+
+   res.redirect(`/college/${college_id}?collegeApplied=true`);
 });
 
 router.get('/exam', (req, res) => {
