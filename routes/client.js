@@ -13,6 +13,15 @@ router.get('/', async (req, res) => {
    const collegeList = await College.findAll();
    const colleges = collegeList.sort((a, b) => a.viewsCount - b.viewsCount).slice(0, 3);
 
+   let reviews = await Review.findAll();
+   reviews = await Promise.all(
+      reviews.map(async (review) => {
+         review.user = await User.findOne({ where: { id: review.user_id } });
+         review.college = await College.findOne({ where: { id: review.college_id } });
+         return review;
+      })
+   );
+
    res.render('index', {
       username,
       isLoggedIn,
@@ -22,6 +31,14 @@ router.get('/', async (req, res) => {
          description,
          link: `/college/${id}`,
          img: `/assets/${thumbnail}`,
+      })),
+
+      reviews: reviews.map(({ user, college, title, description, rate }) => ({
+         username: user.name,
+         college: college.name,
+         title,
+         description,
+         rate,
       })),
    });
 });
