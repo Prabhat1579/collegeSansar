@@ -2,12 +2,13 @@ const College = require('../../model/College');
 
 const createCollege = async (req, res) => {
    try {
-      const { name, location, fee, courses, category, description, thumbnail } = req.body;
+      const { name, location, fee, eligibility, courses, category, description, thumbnail } = req.body;
+      console.log(fee);
 
-      const college = College.build({ name, location, fee, courses, category, description, thumbnail });
+      const college = College.build({ name, location, fee, eligibility, courses, category, description, thumbnail });
       await college.save();
 
-      res.redirect('/admin/college');
+      res.redirect('/admin/college?collegeCreated=true');
    } catch (err) {
       res.send(`FAILED: ${err.message}`);
    }

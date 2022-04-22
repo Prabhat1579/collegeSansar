@@ -1,4 +1,5 @@
 const express = require('express');
+const chalk = require('chalk');
 const { createCollege, deleteCollege } = require('../controller/admin/college');
 const College = require('../model/College');
 const router = express.Router();
@@ -10,6 +11,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/college', async (req, res) => {
+   const { collegeCreated } = req.query;
+
    const collegeList = await College.findAll();
 
    res.render('admin_college', {
@@ -20,6 +23,8 @@ router.get('/college', async (req, res) => {
          thumbnail,
          formAction: `/admin/college/delete/${id}`,
       })),
+
+      collegeCreated,
    });
 });
 

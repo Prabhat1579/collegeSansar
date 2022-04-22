@@ -59,7 +59,7 @@
             </div>
 
             <div class='my-2'>
-               <label for='fee'>Base Fee</label>
+               <label for='fee'>Fee Structure</label>
                <input class='form-control' name='fee' type='text' id='fee' />
             </div>
 
@@ -78,6 +78,11 @@
             <div class='my-2'>
                <label for='description'>Description</label>
                <textarea class='form-control' name='description' type='text' id='description'></textarea>
+            </div>
+
+            <div class='my-2'>
+               <label for='eligibility'>Eligibility</label>
+               <textarea class='form-control' name='eligibility' type='text' id='eligibility'></textarea>
             </div>
 
             <div class='my-2'>
@@ -115,14 +120,47 @@
                      <td>{{this.description}}</td>
                      <td>{{this.thumbnail}}</td>
                      <td>
-                        <form action={{this.formAction}} method='POST'>
+                        <form class='d-flex align-items-center gap-2' action={{this.formAction}} method='POST'>
+                           <button
+                              type='button'
+                              class='btn btn-sm btn-info'
+                              data-toggle='modal'
+                              data-target='#exampleModal'
+                           >Edit</button>
                            <button type='submit' class='btn btn-sm btn-danger'>Delete</button>
                         </form>
+
+                        <div
+                           class='modal fade'
+                           id='exampleModal'
+                           tabindex='-1'
+                           role='dialog'
+                           aria-labelledby='exampleModalLabel'
+                           aria-hidden='true'
+                        >
+                           <div class='modal-dialog' role='document'>
+                              <h2>Edit Modal</h2>
+                           </div>
+                        </div>
                      </td>
                   </tr>
                {{/each}}
             </tbody>
          </table>
+
+         <div
+            class='modal fade'
+            id='exampleModal'
+            tabindex='-1'
+            role='dialog'
+            aria-labelledby='exampleModalLabel'
+            aria-hidden='true'
+         >
+            <div class='modal-dialog' role='document'>
+               <h2>Edit Modal</h2>
+            </div>
+         </div>
+
       </div>
 
       <!-- JavaScript Bundle with Popper -->
@@ -136,5 +174,6 @@
          var alertList = document.querySelectorAll('.alert'); var alerts = [].slice.call(alertList).map(function
          (element) { return new bootstrap.Alert(element) })
       </script>
+
    </body>
 </html>

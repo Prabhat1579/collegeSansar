@@ -20,6 +20,8 @@ const College = sequelize.define('college', {
 
    fee: { type: Sequelize.STRING, allowNull: true },
 
+   eligibility: { type: Sequelize.STRING, allowNull: true },
+
    location: { type: Sequelize.TEXT, allowNull: true },
 
    viewsCount: { type: Sequelize.INTEGER, defaultValue: 0 },
