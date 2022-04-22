@@ -180,7 +180,8 @@ router.get('/register', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-   res.render('Login');
+   const { loginFailed, failMessage } = req.query;
+   res.render('login', { loginFailed, failMessage });
 });
 
 module.exports = router;

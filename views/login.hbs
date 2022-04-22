@@ -7,6 +7,9 @@
       <link rel='stylesheet' href='css/login.css' />
       <link rel='preconnect' href='https://fonts.googleapis.com' />
       <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+
+      <!-- CSS only -->
+
       <link
          href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap'
          rel='stylesheet'
@@ -32,6 +35,12 @@
       <div class='main-container'>
          <div class='logIn'>
             <h2>Log in to College Sansar</h2>
+            {{#if loginFailed}}
+               <div style='padding:10px 16px; width: 50%; margin: 10px 0; background-color: rgba(255, 0, 0, 0.4)'>
+                  {{failMessage}}
+               </div>
+            {{/if}}
+
             <div class='LogIn form'>
                <form action='/auth/login' class='sign-in-form' method='POST'>
 

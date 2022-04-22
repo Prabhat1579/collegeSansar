@@ -40,8 +40,7 @@ const login = async (req, res) => {
 
       res.redirect('/');
    } catch (err) {
-      //* TODo
-      res.send(`FAILED: ${err.message}`);
+      res.redirect(`/login?loginFailed=true&&failMessage=${err.message}`);
    }
 };
 

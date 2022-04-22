@@ -2,8 +2,7 @@
 const Sequelize = require('sequelize');
 
 const db = require('../config/db');
-const College = require('./College');
-const User = require('./User');
+
 const { sequelize } = db;
 
 const Review = sequelize.define('review', {
@@ -17,19 +16,11 @@ const Review = sequelize.define('review', {
    college_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-         model: College,
-         key: 'id',
-      },
    },
 
    user_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-         model: User,
-         key: 'id',
-      },
    },
 
    title: { type: Sequelize.STRING, allowNull: false },

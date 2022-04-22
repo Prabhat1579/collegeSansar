@@ -2,8 +2,7 @@
 const Sequelize = require('sequelize');
 
 const db = require('../config/db');
-const College = require('./College');
-const User = require('./User');
+
 const { sequelize } = db;
 
 const Apply = sequelize.define('apply', {
@@ -17,19 +16,11 @@ const Apply = sequelize.define('apply', {
    college_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-         model: College,
-         key: 'id',
-      },
    },
 
    user_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-         model: User,
-         key: 'id',
-      },
    },
 
    date: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
