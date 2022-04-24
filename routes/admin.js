@@ -51,17 +51,17 @@ router.get('/exam', async (req, res) => {
 
    const exams = await Exam.findAll();
 
+   exams.forEach((exam) => {
+      exam.featurtedImage = `/uploads/${exam.featurtedImage}`;
+      exam.syllabus = `/uploads/${exam.syllabus}`;
+      exam.practicePaper = `/uploads/${exam.practicePaper}`;
+      exam.deleteLink = `/admin/exam/delete/${exam.id}`;
+   });
+
    res.render('admin_exam', {
       examAdded,
       examDeleted,
-      exams: exams.map((exam) => ({
-         ...exam,
-         featurtedImage: `/uploads/${exam.featurtedImage}`,
-         syllabus: `/uploads/${exam.syllabus}`,
-         practicePaper: `/uploads/${exam.practicePaper}`,
-
-         deleteLink: `/admin/exam/delete/${exam.id}`,
-      })),
+      exams: exams,
    });
 });
 
