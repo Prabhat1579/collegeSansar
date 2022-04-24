@@ -58,6 +58,29 @@ router.get('/college', async (req, res) => {
    });
 });
 
+//* THIS IS ADDITIONAL BASED ON STUPID REQUIREMENT : SAME AS BELOW ROUTE
+router.post('/search-college-location', async (req, res) => {
+   const { username, isLoggedIn } = req.session;
+   const { search } = req.body;
+   const Op = Sequelize.Op;
+
+   const collegeList = await College.findAll({ where: { location: { [Op.like]: `%${search}%` } } });
+
+   res.render('college', {
+      username,
+      isLoggedIn,
+      title: `Search Results for " ${search || ''} "`,
+      noResults: collegeList.map((i) => i.id).length < 1,
+      colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
+         name,
+         category,
+         description,
+         link: `/college/${id}`,
+         img: `/assets/${thumbnail}`,
+      })),
+   });
+});
+
 router.post('/search-college', async (req, res) => {
    const { username, isLoggedIn } = req.session;
    const { search, option } = req.body;
@@ -73,7 +96,7 @@ router.post('/search-college', async (req, res) => {
    res.render('college', {
       username,
       isLoggedIn,
-      title: `Search Results for " ${search} "`,
+      title: `Search Results for " ${search || ''} "`,
       noResults: collegeList.map((i) => i.id).length < 1,
       colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
          name,
