@@ -37,6 +37,18 @@
         <div class="main-container">
             <div class="logIn signUp">
               <h2>Sign up to College Sansar</h2>
+
+              {{#if registerFailed}}
+                <div style='padding:10px 16px; width: 50%; margin: 10px 0; background-color: rgba(255, 0, 0, 0.4)'>
+                  {{failMessage}}
+                </div>
+              {{/if}}
+
+
+              
+
+
+
               <div class="LogIn form">
 
               <form action="/auth/register" class="sign-in-form" method="POST">

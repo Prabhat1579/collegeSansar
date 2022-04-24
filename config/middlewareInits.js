@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
+const fileUpload = require('express-fileupload');
 const helmet = require('helmet');
 const session = require('express-session');
 const { SECRET_KEY } = require('./env');
@@ -10,6 +11,9 @@ const middlewareInits = (app) => {
    app.use(morgan('common'));
    // app.use(helmet());
    app.use(cors());
+
+   app.use(fileUpload());
+
    app.use(
       session({
          secret: SECRET_KEY,

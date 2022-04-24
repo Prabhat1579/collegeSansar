@@ -20,8 +20,7 @@ const register = (req, res) => {
             throw new Error(err.message);
          });
    } catch (err) {
-      //* TODO
-      res.send(`FAILED: ${err.message}`);
+      res.redirect(`/register?registerFailed=true&&failMessage=${err.message}`);
    }
 };
 

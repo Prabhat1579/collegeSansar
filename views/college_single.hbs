@@ -19,6 +19,12 @@
          integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3'
          crossorigin='anonymous'
       />
+      <!-- JavaScript Bundle with Popper -->
+      <script
+         src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'
+         integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p'
+         crossorigin='anonymous'
+      ></script>
 
       <title>College Sansar</title>
    </head>
@@ -67,8 +73,203 @@
          <div class='d-flex flex-column flex-sm-row gap-3'>
             <div class=''>
                <img class='rounded img-fluid' height='200' src='/assets/KathmanduUniversity.png' alt='' />
-               <button class='btn btn-sm p-0 my-2 btn-primary'>Write a Review</button>
-               <a href={{applyLink}} class='btn btn-sm p-0 my-2 btn-primary'>Apply</a>
+               <button
+                  data-bs-toggle='modal'
+                  data-bs-target='#exampleModal'
+                  class='btn btn-sm p-0 my-2 btn-primary'
+               >Write a Review</button>
+               <button
+                  type='button'
+                  data-bs-toggle='modal'
+                  data-bs-target='#applyModal'
+                  class='btn btn-sm p-0 my-2 btn-primary'
+               >Apply</button>
+
+               <!-- Button trigger modal -->
+
+               <!-- Modal -->
+               <div
+                  class='modal fade'
+                  id='applyModal'
+                  tabindex='-1'
+                  aria-labelledby='applyModalLabel'
+                  aria-hidden='true'
+               >
+                  <div class='modal-dialog modal-dialog-scrollable'>
+                     <div class='modal-content'>
+                        <div class='modal-header'>
+                           <h5 class='modal-title' id='exampleModalLabel'>Apply Form</h5>
+                           <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                        </div>
+                        <div class='modal-body'>
+
+                           <form action={{applyLink}} method='POST' encType='multipart/form-data'>
+                              <h6>Basic Details</h6>
+
+                              <div class='my-2'>
+                                 <label class='small' for='name'>Full Name</label>
+                                 <input class='form-control' type='text' id='name' name='fullName' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='email'>Email</label>
+                                 <input class='form-control' type='text' id='email' name='email' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='phone'>Phone</label>
+                                 <input class='form-control' type='text' id='phone' name='phone' />
+                              </div>
+
+                              <hr />
+                              <h6>Personal Details</h6>
+
+                              <div class='my-2'>
+                                 <label class='small' for='fatherName'>Father's Name</label>
+                                 <input class='form-control' type='text' id='fatherName' name='fatherName' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='motherName'>Mother's Name</label>
+                                 <input class='form-control' type='text' id='motherName' name='motherName' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='dob'>Date of Birth</label>
+                                 <input class='form-control' placeholder='1990-12-01' type='text' id='dob' name='dob' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='dob'>Parent's contact number</label>
+                                 <input class='form-control' type='text' id='parentContant' name='parentContact' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='dob'>Citizenship Id</label>
+                                 <input class='form-control' type='text' id='citizenId' name='citizenId' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='dob'>Upload Citizneship</label>
+                                 <input class='form-control' type='file' id='citizenship' name='citizenship' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='dob'>Upload Photo</label>
+                                 <input class='form-control' type='file' id='photo' name='photo' />
+                              </div>
+
+                              <hr />
+                              <h6>Education Details</h6>
+                              <div class='my-2'>
+                                 <label class='small' for='slcGrade'>SLC Grade</label>
+                                 <input class='form-control' type='text' id='slcGrade' name='slcGrade' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='plus2Grade'>+2 Grade</label>
+                                 <input class='form-control' type='text' id='plus2Grade' name='plus2Grade' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='slcMarksheet'>SLC Marksheet</label>
+                                 <input class='form-control' type='file' id='slcMarksheet' name='slcMarksheet' />
+                              </div>
+                              <div class='my-2'>
+                                 <label class='small' for='plus2Marksheet'>+2 Marksheet</label>
+                                 <input class='form-control' type='file' id='slcMarksheet' name='plus2Marksheet' />
+                              </div>
+
+                              <button type='submit' class='btn w-100 btn-sm p-0 my-2 btn-success'>Submit</button>
+
+                           </form>
+
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Button trigger modal -->
+
+               <!-- Modal -->
+               <div
+                  class='modal fade'
+                  id='exampleModal'
+                  tabindex='-1'
+                  aria-labelledby='exampleModalLabel'
+                  aria-hidden='true'
+               >
+                  <div class='modal-dialog'>
+                     <div class='modal-content'>
+                        <div class='modal-header'>
+                           <h5 class='modal-title' id='exampleModalLabel'>Write Your Review</h5>
+                           <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                        </div>
+                        <div class='modal-body'>
+
+                           {{#unless isLoggedIn}}
+                              <div class='alert small px-4 py-2 alert-danger' role='alert'>
+                                 Please Login to add your review!
+                              </div>
+                           {{/unless}}
+
+                           <form action={{createReviewLink}} method='POST'>
+                              <div class='my-2'>
+                                 <label for='title'>Review Title</label>
+                                 <input class='form-control' type='text' id='title' name='title' />
+                              </div>
+                              <div class='my-2'>
+                                 <label for='description'>Review Description</label>
+                                 <textarea
+                                    class='form-control'
+                                    type='text'
+                                    id='description'
+                                    name='description'
+                                 ></textarea>
+                              </div>
+                              <div class='form-check'>
+                                 <input
+                                    class='form-check-input'
+                                    type='radio'
+                                    name='rating'
+                                    id='negative'
+                                    value='negative'
+                                 />
+                                 <label class='form-check-label' for='negative'>
+                                    negative
+                                 </label>
+                              </div>
+                              <div class='form-check'>
+                                 <input
+                                    class='form-check-input'
+                                    type='radio'
+                                    name='rating'
+                                    id='neutral'
+                                    value='neutral'
+                                    checked
+                                 />
+                                 <label class='form-check-label' for='neutral'>
+                                    neutral
+                                 </label>
+                              </div>
+                              <div class='form-check disabled'>
+                                 <input
+                                    class='form-check-input'
+                                    type='radio'
+                                    name='rating'
+                                    id='positive'
+                                    value='positive'
+                                 />
+                                 <label class='form-check-label' for='positive'>
+                                    positive
+                                 </label>
+                              </div>
+                              <div class='my-3'>
+                                 {{#if isLoggedIn}}
+                                    <button class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
+                                 {{else}}
+                                    <button disabled='true' class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
+                                 {{/if}}
+                              </div>
+                           </form>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Modal -->
 
                <div class='my-2'>
                   {{#if reviewAdded}}
@@ -109,61 +310,26 @@
                      {{courses}}
                   </small>
                </div>
-
-               <h5 class='mt-4' id='write-review'>Write Your Review</h5>
-               {{#unless isLoggedIn}}
-                  <div class='alert small px-4 py-2 alert-danger' role='alert'>
-                     Please Login to add your review!
-                  </div>
-               {{/unless}}
-
-               <div class='border rounded px-4 py-2'>
-
-                  <form action={{createReviewLink}} method='POST'>
-                     <div class='my-2'>
-                        <label for='title'>Review Title</label>
-                        <input class='form-control' type='text' id='title' name='title' />
-                     </div>
-                     <div class='my-2'>
-                        <label for='description'>Review Description</label>
-                        <textarea class='form-control' type='text' id='description' name='description'></textarea>
-                     </div>
-                     <div class='form-check'>
-                        <input class='form-check-input' type='radio' name='rating' id='negative' value='negative' />
-                        <label class='form-check-label' for='negative'>
-                           negative
-                        </label>
-                     </div>
-                     <div class='form-check'>
-                        <input
-                           class='form-check-input'
-                           type='radio'
-                           name='rating'
-                           id='neutral'
-                           value='neutral'
-                           checked
-                        />
-                        <label class='form-check-label' for='neutral'>
-                           neutral
-                        </label>
-                     </div>
-                     <div class='form-check disabled'>
-                        <input class='form-check-input' type='radio' name='rating' id='positive' value='positive' />
-                        <label class='form-check-label' for='positive'>
-                           positive
-                        </label>
-                     </div>
-                     <div class='my-3'>
-                        {{#if isLoggedIn}}
-                           <button class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
-                        {{else}}
-                           <button disabled='true' class='btn m-0 btn-sm btn-primary p-0'>Submit</button>
-                        {{/if}}
-                     </div>
-                  </form>
+               <div class='mb-4'>
+                  <h4 class='lead'>
+                     Eligibility Criteria
+                  </h4>
+                  <small>
+                     {{eligibility}}
+                  </small>
+               </div>
+               <div class='mb-4'>
+                  <h4 class='lead'>
+                     Fee Structure
+                  </h4>
+                  <small>
+                     {{fee}}
+                  </small>
                </div>
 
-               <h5 class='mt-4' id='write-review'>Reviews</h5>
+               <hr />
+
+               <h5 class='mt-4' id='write-review'>College Reviews</h5>
 
                {{#each reviews}}
                   <div class='p-3 bg-light rounded my-2 border'>

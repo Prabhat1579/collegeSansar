@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const path = require('path');
 const express = require('express');
 const College = require('../model/College');
 const Sequelize = require('sequelize');
@@ -145,7 +146,7 @@ router.get('/college/:college_id', async (req, res) => {
       })
    );
 
-   const { id, name, category, description, courses } = college;
+   const { id, name, category, description, courses, eligibility, fee } = college;
    res.render('college_single', {
       username,
       isLoggedIn,
@@ -154,8 +155,11 @@ router.get('/college/:college_id', async (req, res) => {
       category,
       description,
       courses,
+      eligibility,
+      fee,
+
       createReviewLink: `/review/create/${college_id}`,
-      applyLink: `apply/${college_id}`,
+      applyLink: `/college/apply/${college_id}`,
 
       reviews: reviews.map(({ user, title, description, rate }) => ({
          username: user.name,
@@ -180,11 +184,52 @@ router.post('/review/create/:college_id', async (req, res) => {
    res.redirect(`/college/${college_id}?reviewAdded=true`);
 });
 
-router.get('/college/apply/:college_id', async (req, res) => {
+router.post('/college/apply/:college_id', async (req, res) => {
    const { userId } = req.session;
    const { college_id } = req.params;
 
-   const apply = Apply.build({ user_id: userId, college_id });
+   const {
+      fullName,
+      email,
+      phone,
+      fatherName,
+      motherName,
+      dob,
+      parentContact,
+      citizenId,
+      citizenship,
+      photo,
+      slcGrade,
+      plus2Grade,
+      slcMarksheet,
+      plus2Marksheet,
+   } = req.body;
+
+   console.log(JSON.stringify(Object.keys(req.files)));
+   Object.keys(req.files).map(async (key) => {
+      const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
+      const file = req.files[key];
+      await file.mv(fileUploadPath);
+   });
+
+   const apply = Apply.build({
+      user_id: userId,
+      college_id,
+      fullName,
+      email,
+      phone,
+      fatherName,
+      motherName,
+      dob,
+      parentContact,
+      citizenId,
+      citizenship: path.join(__dirname, '..', 'uploads', req.files.citizenship.name),
+      photo: path.join(__dirname, '..', 'uploads', req.files.photo.name),
+      slcGrade,
+      plus2Grade,
+      slcMarksheet: path.join(__dirname, '..', 'uploads', req.files.slcMarksheet.name),
+      plus2Marksheet: path.join(__dirname, '..', 'uploads', req.files.plus2Marksheet.name),
+   });
    await apply.save();
 
    res.redirect(`/college/${college_id}?collegeApplied=true`);
@@ -199,7 +244,8 @@ router.get('/career', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-   res.render('register');
+   const { registerFailed, failMessage } = req.query;
+   res.render('register', { registerFailed, failMessage });
 });
 
 router.get('/login', (req, res) => {
