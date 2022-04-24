@@ -205,7 +205,6 @@ router.post('/college/apply/:college_id', async (req, res) => {
       plus2Marksheet,
    } = req.body;
 
-   console.log(JSON.stringify(Object.keys(req.files)));
    Object.keys(req.files).map(async (key) => {
       const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
       const file = req.files[key];

@@ -38,15 +38,64 @@
 
       <div class='col-12 col-sm-6 mx-auto px-4 my-5'>
          <h4>Add Exam</h4>
-         <form action=''>
-            <div class='my-2'>
-               <label for='name'>Exam Name</label>
-               <input class='form-control' type='text' id='name' />
+
+         {{#if examAdded}}
+            <div class='alert alert-success' role='alert'>
+               Exam Added Successfully!
             </div>
+         {{/if}}
+
+         <form action='/admin/exam/add' method='POST' encType='multipart/form-data'>
+            <div class='my-2'>
+               <label>Exam Title</label>
+               <input class='form-control' type='text' name='examTitle' />
+            </div>
+
+            <div class='my-2'>
+               <label>Overview</label>
+               <textarea class='form-control' type='text' name='overview'></textarea>
+            </div>
+
+            <div class='my-2'>
+               <label>Contact</label>
+               <input class='form-control' type='text' name='contact' />
+            </div>
+
+            <div class='my-2'>
+               <label>Eligibility</label>
+               <textarea class='form-control' type='text' name='eligibility'></textarea>
+            </div>
+
+            <div class='my-2'>
+               <label>Syllabus</label>
+               <input class='form-control' type='file' name='syllabus' />
+            </div>
+
+            <div class='my-2'>
+               <label>Practice Paper</label>
+               <input class='form-control' type='file' name='practicePaper' />
+            </div>
+
+            <div class='my-2'>
+               <label>Exam Date</label>
+               <input class='form-control' placeholder='2022-05-10' type='text' name='examDate' />
+            </div>
+
+            <div class='my-2'>
+               <label>Admit Card Release Date</label>
+               <input class='form-control' type='text' name='admitCardReleaseDate' />
+            </div>
+
+            <div class='my-2'>
+               <label>Result</label>
+               <input class='form-control' type='text' name='result' />
+            </div>
+
             <div class='my-2'>
                <label for='image'>Featured Image</label>
-               <input class='form-control' type='text' id='image' />
+               <input class='form-control' type='file' name='featuredImage' />
             </div>
+
             <div class='my-2'>
                <button class='btn btn-primary'>Add Exam</button>
             </div>

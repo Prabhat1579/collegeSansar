@@ -1,7 +1,9 @@
 const express = require('express');
 const chalk = require('chalk');
+const path = require('path');
 const { createCollege, deleteCollege } = require('../controller/admin/college');
 const College = require('../model/College');
+const Exam = require('../model/Exam');
 const router = express.Router();
 
 // * GET ROUTES
@@ -33,7 +35,9 @@ router.get('/career', (req, res) => {
 });
 
 router.get('/exam', (req, res) => {
-   res.render('admin_exam');
+   const { examAdded } = req.query;
+
+   res.render('admin_exam', { examAdded });
 });
 
 router.get('/login', (req, res) => {
@@ -56,6 +60,50 @@ router.post('/register', (req, res) => {});
 
 router.post('/college', createCollege);
 router.post('/college/delete/:college_id', deleteCollege);
+
+router.post('/exam/add', async (req, res) => {
+   const { userId } = req.session;
+
+   const {
+      examTitle,
+      examType,
+      contact,
+      admitCardReleaseDate,
+      eligibility,
+      syllabus,
+      practicePaper,
+      featuredImage,
+      examDate,
+      result,
+      overview,
+   } = req.body;
+
+   Object.keys(req.files).map(async (key) => {
+      const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
+      const file = req.files[key];
+      await file.mv(fileUploadPath);
+   });
+
+   const exam = Exam.build({
+      user_id: userId,
+      examTitle,
+      examType,
+      contact,
+      admitCardReleaseDate,
+      eligibility,
+      examDate,
+      result,
+      overview,
+
+      featurtedImage: path.join(__dirname, '..', 'uploads', req.files.featuredImage.name),
+      practicePaper: path.join(__dirname, '..', 'uploads', req.files.practicePaper.name),
+      syllabus: path.join(__dirname, '..', 'uploads', req.files.syllabus.name),
+   });
+
+   await exam.save();
+
+   res.redirect(`/admin/exam?examAdded=true`);
+});
 
 router.post('/career', (req, res) => {});
 
