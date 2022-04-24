@@ -36,13 +36,22 @@
          </div>
       </nav>
 
+      {{#if examDeleted}}
+         <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            Exam Deleted Successfully!
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+         </div>
+      {{/if}}
+
       <div class='col-12 col-sm-6 mx-auto px-4 my-5'>
          <h4>Add Exam</h4>
 
          {{#if examAdded}}
-            <div class='alert alert-success' role='alert'>
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
                Exam Added Successfully!
+               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
+
          {{/if}}
 
          <form action='/admin/exam/add' method='POST' encType='multipart/form-data'>
@@ -105,6 +114,62 @@
                <button class='btn btn-primary'>Add Exam</button>
             </div>
          </form>
+      </div>
+
+      <hr />
+
+      <p class='display-4 px-4'>All Exams</p>
+      <div class='py-0 px-4 table-responsive'>
+         <table class='table table-striped'>
+
+            <thead>
+               <tr>
+                  <th scope='col'>#</th>
+                  <th scope='col'>Actions</th>
+                  <th scope='col'>Exam Title</th>
+                  <th scope='col'>Exam Type</th>
+                  <th scope='col'>Overview</th>
+                  <th scope='col'>Contact</th>
+                  <th scope='col'>Eligibility</th>
+                  <th scope='col'>Exam Date</th>
+                  <th scope='col'>Admit Card Release Date</th>
+                  <th scope='col'>Result</th>
+                  <th scope='col'>Syllabus</th>
+                  <th scope='col'>Practice paper</th>
+                  <th scope='col'>Featured Image</th>
+               </tr>
+            </thead>
+
+            <tbody>
+
+               {{#each exams}}
+                  <tr>
+
+                     <th scope='row'>{{@index}}</th>
+                     <td>
+                        <div class='d-flex gap-2'>
+                           <button class='btn btn-sm btn-info'>edit</button>
+                           <a href={{this.deleteLink}} class='btn btn-sm btn-danger'>delete</a>
+                        </div>
+                     </td>
+                     <td>{{this.examTitle}}</td>
+                     <td>{{this.examType}}</td>
+                     <td>{{this.overview}}</td>
+                     <td>{{this.contact}}</td>
+                     <td>{{this.eligibility}}</td>
+                     <td>{{this.examDate}}</td>
+                     <td>{{this.admitCardReleaseDate}}</td>
+                     <td>{{this.result}}</td>
+                     <td><img height='60' src={{this.syllabus}} alt='syllabus' /></td>
+                     <td><img height='60' src={{this.practicePaper}} alt='practice paper' /></td>
+                     <td><img height='60' src={{this.featurtedImage}} alt='featured image' /></td>
+
+                  </tr>
+
+               {{/each}}
+
+            </tbody>
+         </table>
       </div>
 
       <!-- JavaScript Bundle with Popper -->

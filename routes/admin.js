@@ -34,10 +34,35 @@ router.get('/career', (req, res) => {
    res.render('admin_career');
 });
 
-router.get('/exam', (req, res) => {
-   const { examAdded } = req.query;
+router.get('/exam/delete/:exam_id', async (req, res) => {
+   const { exam_id } = req.params;
 
-   res.render('admin_exam', { examAdded });
+   await Exam.destroy({
+      where: {
+         id: exam_id,
+      },
+   });
+
+   res.redirect('/admin/exam?examDeleted=true');
+});
+
+router.get('/exam', async (req, res) => {
+   const { examAdded, examDeleted } = req.query;
+
+   const exams = await Exam.findAll();
+
+   res.render('admin_exam', {
+      examAdded,
+      examDeleted,
+      exams: exams.map((exam) => ({
+         ...exam,
+         featurtedImage: `/uploads/${exam.featurtedImage}`,
+         syllabus: `/uploads/${exam.syllabus}`,
+         practicePaper: `/uploads/${exam.practicePaper}`,
+
+         deleteLink: `/admin/exam/delete/${exam.id}`,
+      })),
+   });
 });
 
 router.get('/login', (req, res) => {
@@ -95,13 +120,12 @@ router.post('/exam/add', async (req, res) => {
       result,
       overview,
 
-      featurtedImage: path.join(__dirname, '..', 'uploads', req.files.featuredImage.name),
-      practicePaper: path.join(__dirname, '..', 'uploads', req.files.practicePaper.name),
-      syllabus: path.join(__dirname, '..', 'uploads', req.files.syllabus.name),
+      featurtedImage: req.files.featuredImage.name,
+      practicePaper: req.files.practicePaper.name,
+      syllabus: req.files.syllabus.name,
    });
 
    await exam.save();
-
    res.redirect(`/admin/exam?examAdded=true`);
 });
 

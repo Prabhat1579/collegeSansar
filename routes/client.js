@@ -222,13 +222,14 @@ router.post('/college/apply/:college_id', async (req, res) => {
       dob,
       parentContact,
       citizenId,
-      citizenship: path.join(__dirname, '..', 'uploads', req.files.citizenship.name),
-      photo: path.join(__dirname, '..', 'uploads', req.files.photo.name),
+      citizenship: req.files.citizenship.name,
+      photo: req.files.photo.name,
       slcGrade,
       plus2Grade,
-      slcMarksheet: path.join(__dirname, '..', 'uploads', req.files.slcMarksheet.name),
-      plus2Marksheet: path.join(__dirname, '..', 'uploads', req.files.plus2Marksheet.name),
+      slcMarksheet: req.files.slcMarksheet.name,
+      plus2Marksheet: req.files.plus2Marksheet.name,
    });
+
    await apply.save();
 
    res.redirect(`/college/${college_id}?collegeApplied=true`);
