@@ -4,6 +4,7 @@ const path = require('path');
 const { createCollege, deleteCollege } = require('../controller/admin/college');
 const College = require('../model/College');
 const Exam = require('../model/Exam');
+const Career = require('../model/Career');
 const router = express.Router();
 
 // * GET ROUTES
@@ -30,8 +31,22 @@ router.get('/college', async (req, res) => {
    });
 });
 
-router.get('/career', (req, res) => {
-   res.render('admin_career');
+router.get('/career', async (req, res) => {
+   const { careerAdded, careerDeleted } = req.query;
+
+   const careers = await Career.findAll();
+
+   careers.forEach((item) => {
+      item.featuredImage = `/uploads/${item.featuredImage}`;
+      item.shortDescription = item.careerDescription.substring(0, 20);
+      item.deleteLink = `/admin/career/delete/${item.id}`;
+   });
+
+   res.render('admin_career', {
+      careerAdded,
+      careerDeleted,
+      careers,
+   });
 });
 
 router.get('/exam/delete/:exam_id', async (req, res) => {
@@ -63,6 +78,26 @@ router.get('/exam', async (req, res) => {
       examDeleted,
       exams: exams,
    });
+});
+
+router.post('/career/create', async (req, res) => {
+   const { careerName, careerDescription } = req.body;
+   const { featuredImage } = req.files;
+
+   const fileUploadPath = path.join(__dirname, '..', 'uploads', featuredImage.name);
+   const file = featuredImage;
+   await file.mv(fileUploadPath);
+
+   const career = Career.build({
+      careerName,
+      careerDescription,
+
+      featuredImage: featuredImage.name,
+   });
+
+   await career.save();
+
+   res.redirect('/admin/career?careerAdded=true');
 });
 
 router.get('/login', (req, res) => {
@@ -129,7 +164,17 @@ router.post('/exam/add', async (req, res) => {
    res.redirect(`/admin/exam?examAdded=true`);
 });
 
-router.post('/career', (req, res) => {});
+router.get('/career/delete/:career_id', async (req, res) => {
+   const { career_id } = req.params;
+
+   await Career.destroy({
+      where: {
+         id: career_id,
+      },
+   });
+
+   res.redirect('/admin/career?careerDeleted=true');
+});
 
 router.post('/exam', (req, res) => {});
 

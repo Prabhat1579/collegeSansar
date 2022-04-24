@@ -36,21 +36,64 @@
          </div>
       </nav>
 
+      {{#if careerDeleted}}
+         <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            Career Deleted Successfully!
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+         </div>
+      {{/if}}
+
       <div class='col-12 col-sm-6 px-4 mx-auto my-5'>
+
          <h4>Add Career</h4>
-         <form action=''>
-            <div class='my-2'>
-               <label for='name'>Career Name</label>
-               <input class='form-control' type='text' id='name' />
+
+         {{#if careerAdded}}
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+               Career Added Successfully!
+               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
+
+         {{/if}}
+
+         <form action='/admin/career/create' method='POST' enctype='multipart/form-data'>
             <div class='my-2'>
-               <label for='image'>Featured Image</label>
-               <input class='form-control' type='text' id='image' />
+               <label class='small'>Career Name</label>
+               <input class='form-control' type='text' name='careerName' />
             </div>
+
             <div class='my-2'>
+               <label class='small'>Career Description</label>
+               <textarea class='form-control' name='careerDescription'></textarea>
+            </div>
+
+            <div class='my-2'>
+               <label class='small'>Featured Image</label>
+               <input class='form-control' type='file' name='featuredImage' />
+            </div>
+
+            <div class='my-3'>
                <button class='btn btn-primary'>Add Career</button>
             </div>
          </form>
+      </div>
+
+      <p class='display-4 px-4'>Blog Cards</p>
+
+      <div class='px-4 d-flex gap-3 flex-wrap py-4'>
+         {{#each careers}}
+            <div class='card' style='width: 18rem;'>
+               <img src={{this.featuredImage}} class='card-img-top' alt='...' />
+               <div class='card-body'>
+                  <h5 class='card-title'>{{this.careerName}}</h5>
+                  <p class='card-text'>{{this.shortDescription}}</p>
+                  <div>
+                     <button class='btn btn-primary'>Edit</button>
+                     <a href={{this.deleteLink}} class='btn btn-danger'>Delete</a>
+                  </div>
+               </div>
+            </div>
+
+         {{/each}}
       </div>
 
       <!-- JavaScript Bundle with Popper -->
