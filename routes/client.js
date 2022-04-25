@@ -281,7 +281,7 @@ router.post('/career/search-career', async (req, res) => {
 	const collegeList = colleges.map(({ id, name, category, description, thumbnail }) => ({
 		name,
 		category,
-		description,
+		description: description.substring(20) + '...',
 		link: `/college/${id}`,
 		img: `/assets/${thumbnail}`,
 	}));
