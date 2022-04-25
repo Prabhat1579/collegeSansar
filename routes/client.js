@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 		colleges: colleges.map(({ id, name, category, description, thumbnail }) => ({
 			name,
 			category,
-			description,
+			description: description.substring(20) + '...',
 			link: `/college/${id}`,
 			img: `/assets/${thumbnail}`,
 		})),
@@ -53,7 +53,7 @@ router.get('/college', async (req, res) => {
 		colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
 			name,
 			category,
-			description,
+			description: description.substring(20) + '...',
 			link: `/college/${id}`,
 			img: `/assets/${thumbnail}`,
 		})),
@@ -76,7 +76,7 @@ router.post('/search-college-location', async (req, res) => {
 		colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
 			name,
 			category,
-			description,
+			description: description.substring(20) + '...',
 			link: `/college/${id}`,
 			img: `/assets/${thumbnail}`,
 		})),
@@ -103,7 +103,7 @@ router.post('/search-college', async (req, res) => {
 		colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
 			name,
 			category,
-			description,
+			description: description.substring(20) + '...',
 			link: `/college/${id}`,
 			img: `/assets/${thumbnail}`,
 		})),
@@ -124,7 +124,7 @@ router.get('/search-college/:category', async (req, res) => {
 		colleges: collegeList.map(({ id, name, category, description, thumbnail }) => ({
 			name,
 			category,
-			description,
+			description: description.substring(20) + '...',
 			link: `/college/${id}`,
 			img: `/assets/${thumbnail}`,
 		})),
