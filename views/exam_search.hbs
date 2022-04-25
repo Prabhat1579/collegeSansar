@@ -80,33 +80,39 @@
 						</form>
 					</div>
 
-					<div>
-						<p>Upcoming Exams</p>
+					<div class='w-100'>
 
-						<div class='d-flex flex-wrap gap-3'>
-							<a href='#' class='card text-decoration-none' style='width: 18rem;'>
-								<img
-									src={{this.featuredImage}}
-									height='200'
-									style='object-fit:cover;'
-									class='card-img-top'
-									alt='...'
-								/>
-								<div class='card-body'>
-									<h5 class='card-title'>{{this.examTitle}}</h5>
-									<p class='card-text small'>{{this.examCategory}}</p>
-									<p class='card-text small'>{{this.examDate}}</p>
-								</div>
-							</a>
+						<div id='search-results' class='Searchtext'>
+							<p>Search Results</p>
+
+							<div class='mt-3 d-flex flex-wrap gap-3'>
+								{{#each searchExams}}
+									<a href='#' class='card text-decoration-none' style='width: 18rem;'>
+										<img
+											src={{this.featuredImage}}
+											height='200'
+											style='object-fit:cover;'
+											class='card-img-top'
+											alt='...'
+										/>
+										<div class='card-body'>
+											<h5 class='card-title'>{{this.examTitle}}</h5>
+											<p class='card-text small'>{{this.examCategory}}</p>
+											<p class='card-text small'>{{this.examDate}}</p>
+										</div>
+									</a>
+
+								{{/each}}
+
+							</div>
 						</div>
+
 					</div>
 					{{! <div class='showExams'>
 						<p>Here the date of exams will be shown</p>
 					</div> }}
 				</div>
-				<div class='ExamImage'>
-					<img src='/assets/exams.png' alt='' />
-				</div>
+
 			</div>
 
 			<div>

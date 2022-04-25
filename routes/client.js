@@ -7,6 +7,7 @@ const Review = require('../model/Review');
 const Apply = require('../model/Apply');
 const User = require('../model/User');
 const Career = require('../model/Career');
+const Exam = require('../model/Exam');
 
 const router = express.Router();
 
@@ -236,8 +237,36 @@ router.post('/college/apply/:college_id', async (req, res) => {
 	res.redirect(`/college/${college_id}?collegeApplied=true`);
 });
 
-router.get('/exam', (req, res) => {
-	res.render('exam');
+router.get('/exam', async (req, res) => {
+	const { search } = req.query;
+	const Op = Sequelize.Op;
+	const searchExams = await Exam.findAll({ where: { examTitle: { [Op.like]: `%${search}%` } } });
+
+	const upcomingExam = await Exam.findAll({ limit: 1, order: [['createdAt', 'DESC']] });
+
+	const { examTitle, examCategory, examDate, featurtedImage } = upcomingExam[0];
+
+	searchExams.forEach((item) => {
+		item.featuredImage = `/uploads/${item.featurtedImage}`;
+	});
+
+	if (search && search.length > 0) {
+		return res.render('exam_search', {
+			searchExams,
+		});
+	} else {
+		res.render('exam', {
+			//* upcoming exam
+			examTitle,
+			examCategory,
+			examDate,
+			featuredImage: `/uploads/${featurtedImage}`,
+
+			//* upcoming exam
+
+			searchExams,
+		});
+	}
 });
 
 router.get('/career', async (req, res) => {
