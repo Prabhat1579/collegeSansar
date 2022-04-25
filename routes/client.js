@@ -264,6 +264,34 @@ router.get('/career/:career_id', async (req, res) => {
 	});
 });
 
+router.post('/career/search-career', async (req, res) => {
+	const { search } = req.body;
+
+	const Op = Sequelize.Op;
+
+	const colleges = await College.findAll({ where: { name: { [Op.like]: `%${search}%` } } });
+	const careers = await Career.findAll({ where: { careerName: { [Op.like]: `%${search}%` } } });
+
+	careers.forEach((item) => {
+		item.featuredImage = `/uploads/${item.featuredImage}`;
+		item.shortDescription = item.careerDescription.substring(0, 20) + '...';
+		item.viewLink = `/career/${item.id}`;
+	});
+
+	const collegeList = colleges.map(({ id, name, category, description, thumbnail }) => ({
+		name,
+		category,
+		description,
+		link: `/college/${id}`,
+		img: `/assets/${thumbnail}`,
+	}));
+
+	res.render('career', {
+		colleges: collegeList,
+		careers,
+	});
+});
+
 router.get('/register', (req, res) => {
 	const { registerFailed, failMessage } = req.query;
 	res.render('register', { registerFailed, failMessage });

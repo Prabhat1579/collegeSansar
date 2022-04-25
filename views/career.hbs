@@ -3,7 +3,7 @@
 		<meta charset='UTF-8' />
 		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
 		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-		<link rel='stylesheet' href='css/career.css' />
+		<link rel='stylesheet' href='/css/career.css' />
 		<link rel='preconnect' href='https://fonts.googleapis.com' />
 		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 		<link
@@ -20,6 +20,7 @@
 			crossorigin='anonymous'
 		/>
 	</head>
+
 	<body>
 		<header>
 			<nav class='m-3'>
@@ -62,9 +63,16 @@
 		<main class='p-3'>
 			<div class='my-4 d-flex justify-content-center flex-column align-items-center'>
 				<p class='display-4'>What's your goal?</p>
-				<form class='my-3 w-50' action='/search-college' method='POST'>
+				<form class='my-3 w-50' action='/career/search-career' method='POST'>
 					<div class='d-flex justify-content-center gap-2'>
-						<input class='form-control' type='text' name='search' id='SC1' placeholder='Enter course colleges' />
+						<input
+							class='form-control'
+							type='text'
+							name='search'
+							id='SC1'
+							placeholder='type what you are looking for... eg. "IT"'
+						/>
+
 						<button
 							class='btn text-light m-0'
 							style='height: 100%; padding: 10px 20px; background-color: #F24E1E;'
@@ -93,6 +101,28 @@
 				</div>
 
 			</div>
+
+			<div class='w-75 mx-auto'>
+				<h2>COLLEGES</h2>
+
+				<div class='d-flex flex-wrap gap-3'>
+					{{#each colleges}}
+						<a class='college-items shadow-sm rounded text-muted text-decoration-none' href={{this.link}}>
+							<img class='rounded-top' src={{this.img}} alt={{this.name}} />
+							<div class='p-2'>
+								<h4>{{this.name}}</h4>
+								<div class='my-2'>
+									<small>category: {{this.category}}</small>
+								</div>
+								<div>
+									<small>{{this.description}}</small>
+								</div>
+							</div>
+						</a>
+					{{/each}}
+				</div>
+			</div>
+
 		</main>
 
 	</body>
