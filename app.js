@@ -19,3 +19,4 @@ app.use('/admin', require('./routes/admin'));
 app.listen(PORT, () => {
    console.log(chalk.bold.yellow(`server running in port ${PORT}`));
 });
+
