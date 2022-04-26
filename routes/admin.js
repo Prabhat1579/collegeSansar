@@ -7,6 +7,7 @@ const Exam = require('../model/Exam');
 const Career = require('../model/Career');
 const User = require('../model/User');
 const Apply = require('../model/Apply');
+const sendEmail = require('./sendEmail');
 const router = express.Router();
 
 // * GET ROUTES
@@ -155,11 +156,13 @@ router.post('/exam/add', async (req, res) => {
 		overview,
 	} = req.body;
 
-	Object.keys(req.files).map(async (key) => {
-		const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
-		const file = req.files[key];
-		await file.mv(fileUploadPath);
-	});
+	if (req.files) {
+		Object.keys(req.files).map(async (key) => {
+			const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
+			const file = req.files[key];
+			await file.mv(fileUploadPath);
+		});
+	}
 
 	const exam = Exam.build({
 		user_id: userId,
@@ -173,12 +176,21 @@ router.post('/exam/add', async (req, res) => {
 		result,
 		overview,
 
-		featurtedImage: req.files.featuredImage.name,
-		practicePaper: req.files.practicePaper.name,
-		syllabus: req.files.syllabus.name,
+		featurtedImage: req.files?.featuredImage?.name,
+		practicePaper: req.files?.practicePaper?.name,
+		syllabus: req.files?.syllabus?.name,
 	});
 
 	await exam.save();
+
+	const users = await User.findAll();
+	users.forEach((user) => {
+		sendEmail({
+			email: user.email,
+			text: `Upcoming exam: ${examTitle}... Link: http://localhost:5000/exam/${exam.id}`,
+		});
+	});
+
 	res.redirect(`/admin/exam?examAdded=true`);
 });
 

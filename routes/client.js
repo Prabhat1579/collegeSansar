@@ -1,5 +1,7 @@
 const chalk = require('chalk');
 const path = require('path');
+const nodemailer = require('nodemailer');
+
 const express = require('express');
 const College = require('../model/College');
 const Sequelize = require('sequelize');
@@ -8,10 +10,15 @@ const Apply = require('../model/Apply');
 const User = require('../model/User');
 const Career = require('../model/Career');
 const Exam = require('../model/Exam');
+const sendEmail = require('./sendEmail');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+	sendEmail({
+		email: 'kritish073bct@ioepc.edu.np',
+	});
+
 	const { username, isLoggedIn } = req.session;
 	const collegeList = await College.findAll();
 	const colleges = collegeList.sort((a, b) => a.viewsCount - b.viewsCount).slice(0, 3);
@@ -305,9 +312,13 @@ router.get('/career/:career_id', async (req, res) => {
 	const { career_id } = req.params;
 
 	const career = await Career.findByPk(career_id);
+	const featuredImage = '/uploads/' + career.featuredImage;
+	const { careerName, careerDescription } = career;
 
 	res.render('career_single', {
-		career,
+		careerName,
+		careerDescription,
+		featuredImage,
 	});
 });
 
