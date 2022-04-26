@@ -114,7 +114,23 @@
 				<div class='Searchtext'>
 					<p>Search By Category</p>
 				</div>
-				<div class='ExamContainer'>
+
+				<div class='d-flex flex-wrap gap-3 w-75 mt-4 mb-5 mx-auto'>
+					<div class='p-4 rounded shadow-sm bg-light border' style='max-width:200px; cursor:pointer'>
+						<a href='/exam?search=engineering&&isCategory=true' class='text-decoration-none lead'>Engineering</a>
+					</div>
+
+					<div class='p-4 rounded shadow-sm bg-light border' style='max-width:200px; cursor:pointer'>
+						<a href='/exam?search=public&&isCategory=true' class='text-decoration-none lead'>Public Service</a>
+					</div>
+
+					<div class='p-4 rounded shadow-sm bg-light border' style='max-width:200px; cursor:pointer'>
+						<a href='/exam?search=medical&&isCategory=true' class='text-decoration-none lead'>Medical</a>
+					</div>
+
+				</div>
+
+				{{! <div class='ExamContainer'>
 					<div class='boxes'>
 						<div class='box1'>
 							<div class='img'>
@@ -172,7 +188,7 @@
 						</div>
 
 					</div>
-				</div>
+				</div> }}
 			</div>
 
 			<div class='SubscribeSection'>

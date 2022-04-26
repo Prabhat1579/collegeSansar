@@ -238,9 +238,16 @@ router.post('/college/apply/:college_id', async (req, res) => {
 });
 
 router.get('/exam', async (req, res) => {
-	const { search } = req.query;
+	const { search, isCategory } = req.query;
 	const Op = Sequelize.Op;
-	const searchExams = await Exam.findAll({ where: { examTitle: { [Op.like]: `%${search}%` } } });
+
+	let searchExams = [];
+
+	if (isCategory) {
+		searchExams = await Exam.findAll({ where: { examCategory: { [Op.like]: `%${search}%` } } });
+	} else {
+		searchExams = await Exam.findAll({ where: { examTitle: { [Op.like]: `%${search}%` } } });
+	}
 
 	const upcomingExam = await Exam.findAll({ limit: 1, order: [['createdAt', 'DESC']] });
 
