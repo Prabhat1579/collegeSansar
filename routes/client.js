@@ -28,9 +28,10 @@ router.get('/', async (req, res) => {
 	res.render('index', {
 		username,
 		isLoggedIn,
-		colleges: colleges.map(({ id, name, category, description, thumbnail }) => ({
+		colleges: colleges.map(({ id, name, category, courses, description, thumbnail }) => ({
 			name,
 			category,
+			courses: courses.substring(0, 20) + '...',
 			description: description.substring(0, 20) + '...',
 			link: `/college/${id}`,
 			img: `/assets/${thumbnail}`,

@@ -1,187 +1,196 @@
 <html lang='en'>
-   <head>
-      <meta charset='UTF-8' />
-      <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-      <title>Colleges Sansar</title>
-      <link rel='stylesheet' type='text/css' href='css/style.css' />
-      <link rel='preconnect' href='https://fonts.googleapis.com' />
-      <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-      <link
-         href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap'
-         rel='stylesheet'
-      />
-      <!-- CSS only -->
-      <link
-         href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
-         rel='stylesheet'
-         integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3'
-         crossorigin='anonymous'
-      />
-   </head>
-   <body>
-      <header>
-         <nav class='m-3'>
-            <a href='/'><img src='assets/logo.png' alt='logo' /></a>
-            <div class='nav-links p-0 d-flex justify-content-between align-items-center'>
-               <ul class='m-0 d-flex align-items-center justify-content-between w-100 px-4'>
-                  <div class='d-flex gap-3'>
-                     <li><a href='/college'>College</a></li>
-                     <li><a href='/career'>Careers</a></li>
-                     <li><a href='/Exam'>Exams</a></li>
-                  </div>
+	<head>
+		<meta charset='UTF-8' />
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<title>Colleges Sansar</title>
+		<link rel='stylesheet' type='text/css' href='css/style.css' />
+		<link rel='preconnect' href='https://fonts.googleapis.com' />
+		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+		<link
+			href='https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap'
+			rel='stylesheet'
+		/>
+		<!-- CSS only -->
+		<link
+			href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
+			rel='stylesheet'
+			integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3'
+			crossorigin='anonymous'
+		/>
+	</head>
+	<body>
+		<header>
+			<nav class='m-3'>
+				<a href='/'><img src='assets/logo.png' alt='logo' /></a>
+				<div class='nav-links p-0 d-flex justify-content-between align-items-center'>
+					<ul class='m-0 d-flex align-items-center justify-content-between w-100 px-4'>
+						<div class='d-flex gap-3'>
+							<li><a href='/college'>College</a></li>
+							<li><a href='/career'>Careers</a></li>
+							<li><a href='/Exam'>Exams</a></li>
+						</div>
 
-                  <div class='d-flex gap-2'>
-                     {{#unless isLoggedIn}}
-                        <a
-                           class='btn btn-primary d-flex align-items-center justify-content-center py-3 text-light'
-                           href='/Login'
-                        >Log In</a>
-                        <a
-                           class='btn btn-primary d-flex align-items-center justify-content-center py-3 text-light'
-                           href='/Register'
-                        >Register</a>
-                     {{/unless}}
-                  </div>
-               </ul>
-               <div class='d-flex align-items-center gap-3'>
-                  {{#if isLoggedIn}}
-                     <span style='white-space: nowrap;'>Hi {{username}}</span>
-                     <div class='btn btn-primary text-white p-0 d-flex align-items-center justify-content-center py-3'>
-                        <a class='text-light text-decoration-none p-0' href='/auth/logout'>Log Out</a>
-                     </div>
-                  {{/if}}
-               </div>
-            </div>
-         </nav>
-      </header>
+						<div class='d-flex gap-2'>
+							{{#unless isLoggedIn}}
+								<a
+									class='btn btn-primary d-flex align-items-center justify-content-center py-3 text-light'
+									href='/Login'
+								>Log In</a>
+								<a
+									class='btn btn-primary d-flex align-items-center justify-content-center py-3 text-light'
+									href='/Register'
+								>Register</a>
+							{{/unless}}
+						</div>
+					</ul>
+					<div class='d-flex align-items-center gap-3'>
+						{{#if isLoggedIn}}
+							<span style='white-space: nowrap;'>Hi {{username}}</span>
+							<div class='btn btn-primary text-white p-0 d-flex align-items-center justify-content-center py-3'>
+								<a class='text-light text-decoration-none p-0' href='/auth/logout'>Log Out</a>
+							</div>
+						{{/if}}
+					</div>
+				</div>
+			</nav>
+		</header>
 
-      <div class='background'>
-         <div class='text-box'>
-            <h1 id='BestCollege'>Find best Colleges in Nepal</h1>
+		<div class='background'>
+			<div class='text-box'>
+				<h1 id='BestCollege'>Find best Colleges in Nepal</h1>
 
-            <form action='/search-college' method='POST'>
-               <div class='d-flex justify-content-center gap-2'>
-                  <input class='form-control' type='text' name='search' id='SC1' placeholder='Enter course colleges' />
-                  <select style='width: 10%;' class='form-select' name='option' aria-label='Default select example'>
-                     <option value='name' selected>by name</option>
-                     <option value='location'>by location</option>
-                  </select>
-                  <button
-                     class='btn text-light m-0'
-                     style='height: 100%; padding: 10px 20px; background-color: #F24E1E;'
-                  >Search</button>
-               </div>
-            </form>
+				<form action='/search-college' method='POST'>
+					<div class='d-flex justify-content-center gap-2'>
+						<input class='form-control' type='text' name='search' id='SC1' placeholder='Enter course colleges' />
+						<select style='width: 10%;' class='form-select' name='option' aria-label='Default select example'>
+							<option value='name' selected>by name</option>
+							<option value='location'>by location</option>
+						</select>
+						<button
+							class='btn text-light m-0'
+							style='height: 100%; padding: 10px 20px; background-color: #F24E1E;'
+						>Search</button>
+					</div>
+				</form>
 
-         </div>
-      </div>
+			</div>
+		</div>
 
-      <div class='colleges'>
-         <h1>Colleges in Nepal</h1>
-         <div class='container'>
-            <a href='/search-college/arts' class='box arts text-decoration-none'>
-               <img src='assets/Artlogo.png' alt='' />
-               <h2>ARTS</h2>
-            </a>
-            <a href='/search-college/engineering' class='box engineering text-decoration-none'>
-               <img src='assets/Architect.png' alt='' />
-               <h2>ENGINEERING</h2>
-            </a>
-            <a href='/search-college/medicine' class='box med text-decoration-none'>
-               <img src='assets/Doctors Bag.png' alt='' />
-               <h2>MEDICINES</h2>
-            </a>
-            <a href='/search-college/education' class='box edu text-decoration-none'>
-               <img src='assets/Homework.png' alt='' />
-               <h2>EDUCATION</h2>
-            </a>
-            <a href='/search-college/management' class='box management text-decoration-none'>
-               <img src='assets/Management.png' alt='' />
-               <h2>MANAGEMENT</h2>
-            </a>
-            <a href='/search-college/science' class='box science text-decoration-none'>
-               <img src='assets/Science Application.png' alt='' />
-               <h2>SCIENCE</h2>
-            </a>
-            <a href='/search-college/computer' class='box csc text-decoration-none'>
-               <img src='assets/System Information.png' alt='' />
-               <h2>COMPUTER SCIENCE</h2>
-            </a>
-            <a href='/search-college/architecture' class='box architecture text-decoration-none'>
-               <img src='assets/25 De Abril Bridge.png' alt='' />
-               <h2>ARCHITECTURE</h2>
-            </a>
-            <a href='/search-college/design' class='box design text-decoration-none'>
-               <img src='assets/Suit.png' alt='' />
-               <h2>DESIGN</h2>
-            </a>
-            <a href='/search-college/agriculture' class='box agriculture text-decoration-none'>
-               <img src='assets/Grass.png' alt='' />
-               <h2>AGRICULTURE</h2>
-            </a>
-            <a href='/search-college/nursing' class='box nursing text-decoration-none'>
-               <img src='assets/Nurse.png' alt='' />
-               <h2>NURSING</h2>
-            </a>
-            <a href='/search-college/aviation' class='box aviation text-decoration-none'>
-               <img src='assets/Airplane Mode On.png' alt='' />
-               <h2>AVIATION</h2>
-            </a>
-         </div>
-      </div>
+		<div class='colleges'>
+			<h1>Colleges in Nepal</h1>
+			<div class='container'>
+				<a href='/search-college/arts' class='box arts text-decoration-none'>
+					<img src='assets/Artlogo.png' alt='' />
+					<h2>ARTS</h2>
+				</a>
+				<a href='/search-college/engineering' class='box engineering text-decoration-none'>
+					<img src='assets/Architect.png' alt='' />
+					<h2>ENGINEERING</h2>
+				</a>
+				<a href='/search-college/medicine' class='box med text-decoration-none'>
+					<img src='assets/Doctors Bag.png' alt='' />
+					<h2>MEDICINES</h2>
+				</a>
+				<a href='/search-college/education' class='box edu text-decoration-none'>
+					<img src='assets/Homework.png' alt='' />
+					<h2>EDUCATION</h2>
+				</a>
+				<a href='/search-college/management' class='box management text-decoration-none'>
+					<img src='assets/Management.png' alt='' />
+					<h2>MANAGEMENT</h2>
+				</a>
+				<a href='/search-college/science' class='box science text-decoration-none'>
+					<img src='assets/Science Application.png' alt='' />
+					<h2>SCIENCE</h2>
+				</a>
+				<a href='/search-college/computer' class='box csc text-decoration-none'>
+					<img src='assets/System Information.png' alt='' />
+					<h2>COMPUTER SCIENCE</h2>
+				</a>
+				<a href='/search-college/architecture' class='box architecture text-decoration-none'>
+					<img src='assets/25 De Abril Bridge.png' alt='' />
+					<h2>ARCHITECTURE</h2>
+				</a>
+				<a href='/search-college/design' class='box design text-decoration-none'>
+					<img src='assets/Suit.png' alt='' />
+					<h2>DESIGN</h2>
+				</a>
+				<a href='/search-college/agriculture' class='box agriculture text-decoration-none'>
+					<img src='assets/Grass.png' alt='' />
+					<h2>AGRICULTURE</h2>
+				</a>
+				<a href='/search-college/nursing' class='box nursing text-decoration-none'>
+					<img src='assets/Nurse.png' alt='' />
+					<h2>NURSING</h2>
+				</a>
+				<a href='/search-college/aviation' class='box aviation text-decoration-none'>
+					<img src='assets/Airplane Mode On.png' alt='' />
+					<h2>AVIATION</h2>
+				</a>
+			</div>
+		</div>
 
-      <section class='p-5'>
-         <div>
-            <h1>Popular Colleges</h1>
-         </div>
+		<section class='p-5'>
+			<div>
+				<h1>Popular Colleges</h1>
+			</div>
 
-         <div class='container-college d-flex justify-content-start gap-3 flex-wrap'>
-            {{#each colleges}}
-               <a href={{this.link}} class='boxes shadow-sm rounded text-decoration-none text-muted'>
-                  <img class='rounded' src={{this.img}} alt={{this.name}} />
-                  <h3 class='lead'>{{this.name}}</h3>
-                  <div class='small my-2'>category: {{this.category}}</div>
-                  <div class='small mt-3 mb-2'>
-                     {{this.description}}
-                  </div>
-               </a>
-            {{/each}}
+			<div class='container-college d-flex justify-content-start gap-4 flex-wrap'>
+				{{#each colleges}}
+					<a
+						style='height: fit-content;'
+						href={{this.link}}
+						class='boxes m-0 shadow-sm rounded text-decoration-none text-muted'
+					>
+						<img style='max-height: 200px' class='rounded' src={{this.img}} alt={{this.name}} />
+						<h3 class='lead'>{{this.name}}</h3>
+						<div class='small my-2'>category: {{this.category}}</div>
+						<div class='small mt-3 mb-2'>
+							About:
+							{{this.description}}
+						</div>
+						<div class='small mt-3 mb-2'>
+							courses:
+							{{this.courses}}
+						</div>
+					</a>
+				{{/each}}
 
-         </div>
-      </section>
+			</div>
+		</section>
 
-      <div class='reviews'>
-         <h1>College Reviews</h1>
+		<div class='reviews'>
+			<h1>College Reviews</h1>
 
-         <div class='review-container d-flex flex-wrap gap-3'>
+			<div class='review-container d-flex flex-wrap gap-3'>
 
-            {{#each reviews}}
-               <div class='p-3 bg-light rounded my-2 border'>
-                  <p>
-                     <strong>{{this.college}}</strong>
-                  </p>
-                  <div class='mb-2 text-muted'><strong>{{this.rate}}</strong></div>
-                  <em>{{this.title}}</em>
-                  <p>
-                     <small>{{this.description}}</small>
-                  </p>
-               </div>
-            {{/each}}
+				{{#each reviews}}
+					<div class='p-3 bg-light rounded my-2 border'>
+						<p>
+							<strong>{{this.college}}</strong>
+						</p>
+						<div class='mb-2 text-muted'><strong>{{this.rate}}</strong></div>
+						<em>{{this.title}}</em>
+						<p>
+							<small>{{this.description}}</small>
+						</p>
+					</div>
+				{{/each}}
 
-         </div>
-      </div>
-      <footer>
-         <div class='footers'>
-            <a href='#'>Community</a>
-            <a href='#'>Company</a>
-            <a href='#'><img src='assets/logo.png' alt='' /></a>
-            <a href='#'>Help Desk</a>
-            <a href='#'>Blog </a>
-         </div>
-         <div class='icons'>
-            <a href='#'><img src='' alt='' />Instagram</a>
-         </div>
-      </footer>
-   </body>
+			</div>
+		</div>
+		<footer>
+			<div class='footers'>
+				<a href='#'>Community</a>
+				<a href='#'>Company</a>
+				<a href='#'><img src='assets/logo.png' alt='' /></a>
+				<a href='#'>Help Desk</a>
+				<a href='#'>Blog </a>
+			</div>
+			<div class='icons'>
+				<a href='#'><img src='' alt='' />Instagram</a>
+			</div>
+		</footer>
+	</body>
 </html>

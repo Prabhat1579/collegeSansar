@@ -5,12 +5,24 @@ const { createCollege, deleteCollege } = require('../controller/admin/college');
 const College = require('../model/College');
 const Exam = require('../model/Exam');
 const Career = require('../model/Career');
+const User = require('../model/User');
+const Apply = require('../model/Apply');
 const router = express.Router();
 
 // * GET ROUTES
 
-router.get('/', (req, res) => {
-	res.render('admin_index');
+router.get('/', async (req, res) => {
+	const colleges = await College.findAll();
+	const users = await User.findAll();
+	const applies = await Apply.findAll();
+	const exams = await Exam.findAll();
+
+	res.render('admin_index', {
+		colleges: colleges.length,
+		students: users.length,
+		applies: applies.length,
+		exams: exams.length,
+	});
 });
 
 router.get('/college', async (req, res) => {
