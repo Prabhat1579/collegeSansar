@@ -42,6 +42,8 @@ router.get('/career', async (req, res) => {
 		item.featuredImage = `/uploads/${item.featuredImage}`;
 		item.shortDescription = item.careerDescription.substring(0, 20);
 		item.deleteLink = `/admin/career/delete/${item.id}`;
+
+		item.editLink = `/admin/career/edit/${item.id}`;
 	});
 
 	res.render('admin_career', {
@@ -225,6 +227,43 @@ router.get('/career/delete/:career_id', async (req, res) => {
 	});
 
 	res.redirect('/admin/career?careerDeleted=true');
+});
+
+router.get('/career/edit/:career_id', async (req, res) => {
+	const { career_id } = req.params;
+	const { careerUpdated } = req.query;
+
+	const career = await Career.findByPk(career_id);
+
+	res.render('admin_career_edit', {
+		careerName: career.careerName,
+		careerDescription: career.careerDescription,
+
+		careerUpdated,
+		editLink: `/admin/career/edit/${career_id}`,
+	});
+});
+
+router.post('/career/edit/:career_id', async (req, res) => {
+	const { career_id } = req.params;
+
+	const { careerName, careerDescription } = req.body;
+
+	let featuredImage;
+
+	if (req.files) {
+		featuredImage = req.files.featuredImage;
+		const fileUploadPath = path.join(__dirname, '..', 'uploads', featuredImage.name);
+		const file = featuredImage;
+		await file.mv(fileUploadPath);
+	}
+
+	await Career.update(
+		{ careerName, careerDescription, featuredImage: featuredImage ? featuredImage.name : '' },
+		{ where: { id: career_id } }
+	);
+
+	res.redirect(`/admin/career/edit/${career_id}?careerUpdated=true`);
 });
 
 router.post('/exam', (req, res) => {});
