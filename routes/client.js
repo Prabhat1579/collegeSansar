@@ -251,12 +251,17 @@ router.get('/exam', async (req, res) => {
 
 	const upcomingExam = await Exam.findAll({ limit: 1, order: [['createdAt', 'DESC']] });
 
-	const {
-		examTitle = '',
-		examCategory = '',
-		examDate = '',
-		featurtedImage = '',
-	} = upcomingExam ? upcomingExam[0] : {};
+	let examTitle = '';
+	let examCategory = '';
+	let examDate = '';
+	let featurtedImage = '';
+
+	if (upcomingExam[0]) {
+		examTitle = upcomingExam[0].examTitle;
+		examCategory = upcomingExam[0].examCategory;
+		examDate = upcomingExam[0].examDate;
+		featurtedImage = upcomingExam[0].featurtedImage;
+	}
 
 	searchExams.forEach((item) => {
 		item.featuredImage = `/uploads/${item.featurtedImage}`;
