@@ -25,6 +25,8 @@ router.get('/college', async (req, res) => {
 			description,
 			thumbnail,
 			formAction: `/admin/college/delete/${id}`,
+
+			editLink: `/admin/college/edit/${id}`,
 		})),
 
 		collegeCreated,
@@ -164,6 +166,53 @@ router.post('/exam/add', async (req, res) => {
 
 	await exam.save();
 	res.redirect(`/admin/exam?examAdded=true`);
+});
+
+router.get('/college/edit/:college_id', async (req, res) => {
+	const { college_id } = req.params;
+	const { collegeUpdated } = req.query;
+
+	const college = await College.findByPk(college_id);
+
+	const {
+		id,
+		name = '',
+		category = '',
+		description = '',
+		courses = '',
+		eligibility = '',
+		facilities = '',
+		fee = '',
+		featuredImage = '',
+	} = college;
+
+	res.render('admin_college_edit', {
+		id,
+		name,
+		category,
+		description,
+		courses,
+		eligibility,
+		facilities,
+		featuredImage,
+		fee,
+
+		postLink: `/admin/college/edit/${id}`,
+		collegeUpdated,
+	});
+});
+
+router.post('/college/edit/:college_id', async (req, res) => {
+	const { college_id } = req.params;
+
+	const { name, location, fee, eligibility, courses, category, description, thumbnail } = req.body;
+
+	await College.update(
+		{ name, location, fee, eligibility, courses, category, description, thumbnail },
+		{ where: { id: college_id } }
+	);
+
+	res.redirect(`/admin/college/edit/${college_id}?collegeUpdated=true`);
 });
 
 router.get('/career/delete/:career_id', async (req, res) => {
