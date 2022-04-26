@@ -14,9 +14,9 @@ serveStaticAssets(app);
 
 app.use('/', require('./routes/client'));
 app.use('/auth', require('./routes/auth'));
+app.use('/admin', require('./routes/adminAuth'));
 app.use('/admin', require('./routes/admin'));
 
 app.listen(PORT, () => {
-   console.log(chalk.bold.yellow(`server running in port ${PORT}`));
+	console.log(chalk.bold.yellow(`server running in port ${PORT}`));
 });
-

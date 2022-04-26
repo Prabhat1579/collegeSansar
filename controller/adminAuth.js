@@ -4,7 +4,7 @@ const hashPassword = require('./utils/hashPassword');
 
 const register = (req, res) => {
 	try {
-		const { name, email, password, confirmPassword } = req.body;
+		const { email, password, confirmPassword } = req.body;
 		if (password !== confirmPassword) throw new Error('Passwords do not match');
 
 		const hashedPassword = hashPassword(password);
@@ -20,7 +20,7 @@ const register = (req, res) => {
 				throw new Error(err.message);
 			});
 	} catch (err) {
-		res.redirect(`/register?registerFailed=true&&failMessage=${err.message}`);
+		res.redirect(`/admin/register?registerFailed=true&&failMessage=${err.message}`);
 	}
 };
 
@@ -39,7 +39,7 @@ const login = async (req, res) => {
 
 		res.redirect('/');
 	} catch (err) {
-		res.redirect(`/login?loginFailed=true&&failMessage=${err.message}`);
+		res.redirect(`/admin/login?loginFailed=true&&failMessage=${err.message}`);
 	}
 };
 
@@ -48,7 +48,7 @@ const logout = (req, res) => {
 		req.session.destroy();
 
 		//* TODo
-		res.redirect('/');
+		res.redirect('/admin');
 	} catch (err) {
 		//* TODo
 		res.send(`FAILED: ${err.message}`);
