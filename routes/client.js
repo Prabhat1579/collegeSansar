@@ -350,6 +350,10 @@ router.post('/career/search-career', async (req, res) => {
 	});
 });
 
+router.post('/exam/subscribe', (req, res) => {
+	res.render('exam', { examSubscribed: true });
+});
+
 router.get('/register', (req, res) => {
 	const { registerFailed, failMessage } = req.query;
 	res.render('register', { registerFailed, failMessage });
