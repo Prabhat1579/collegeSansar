@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
 	sendEmail({
-		email: 'kritish073bct@ioepc.edu.np',
+		email: 'prabhat.dahal123@gmail.com',
 	});
 
 	const { username, isLoggedIn } = req.session;
