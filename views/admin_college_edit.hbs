@@ -60,7 +60,7 @@
 
 				<div class='my-2'>
 					<label for='fee'>Fee Structure</label>
-					<input class='form-control' value={{fee}} name='fee' type='text' id='fee' />
+					<input class='form-control editor' value={{fee}} name='fee' type='text' id='fee' />
 				</div>
 
 				<div class='my-2'>
@@ -78,7 +78,7 @@
 
 				<div class='my-2'>
 					<label for='courses'>Courses Offered</label>
-					<textarea class='form-control' name='courses' type='text' id='courses'>
+					<textarea class='form-control ' name='courses' type='text' id='courses'>
 						{{courses}}
 					</textarea>
 				</div>
@@ -126,6 +126,13 @@
 			var alertList = document.querySelectorAll('.alert'); var alerts = [].slice.call(alertList).map(function
 			(element) { return new bootstrap.Alert(element) })
 		</script>
-
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+	<script>
+    ClassicEditor
+        .create( document.querySelector( '.editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 	</body>
 </html>

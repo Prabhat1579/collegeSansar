@@ -146,6 +146,7 @@ router.get('/college/:college_id', async (req, res) => {
 	const { collegeApplied, reviewAdded } = req.query;
 
 	const college = await College.findByPk(college_id);
+	
 	await College.update({ viewsCount: college.viewsCount + 1 }, { where: { id: college_id } });
 
 	let reviews = await Review.findAll({ where: { college_id } });
@@ -195,7 +196,8 @@ router.post('/review/create/:college_id', async (req, res) => {
 });
 
 router.post('/college/apply/:college_id', async (req, res) => {
-	const { userId } = req.session;
+	try {
+		const { userId } = req.session;
 	const { college_id } = req.params;
 
 	const {
@@ -204,7 +206,7 @@ router.post('/college/apply/:college_id', async (req, res) => {
 		phone,
 		fatherName,
 		motherName,
-		dob,
+		dob, 
 		parentContact,
 		citizenId,
 		citizenship,
@@ -215,12 +217,14 @@ router.post('/college/apply/:college_id', async (req, res) => {
 		plus2Marksheet,
 	} = req.body;
 
-	Object.keys(req.files).map(async (key) => {
-		const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
-		const file = req.files[key];
-		await file.mv(fileUploadPath);
-	});
+	if(req.files){
+		Object.keys(req.files).map(async (key) => {
+			const fileUploadPath = path.join(__dirname, '..', 'uploads', req.files[key].name);
+			const file = req.files[key];
+			await file.mv(fileUploadPath);
+		});
 
+	}
 	const apply = Apply.build({
 		user_id: userId,
 		college_id,
@@ -232,17 +236,20 @@ router.post('/college/apply/:college_id', async (req, res) => {
 		dob,
 		parentContact,
 		citizenId,
-		citizenship: req.files.citizenship.name,
-		photo: req.files.photo.name,
+		citizenship: (req.files && req.files.citizenship)?req.files.citizenship.name:'',
+		photo: (req.files && req.files.photo)?req.files.photo.name:'',
 		slcGrade,
 		plus2Grade,
-		slcMarksheet: req.files.slcMarksheet.name,
-		plus2Marksheet: req.files.plus2Marksheet.name,
+		slcMarksheet: (req.files && req.files.slcMarksheet)?req.files.slcMarksheet.name:'',
+		plus2Marksheet: (req.files && req.files.plus2Marksheet)?req.files.plus2Marksheet.name:'',
 	});
 
 	await apply.save();
 
 	res.redirect(`/college/${college_id}?collegeApplied=true`);
+	} catch (error) {
+		console.error(error)
+	}
 });
 
 router.get('/exam', async (req, res) => {
@@ -259,12 +266,14 @@ router.get('/exam', async (req, res) => {
 
 	const upcomingExam = await Exam.findAll({ limit: 1, order: [['createdAt', 'DESC']] });
 
+	let examId= '';
 	let examTitle = '';
 	let examCategory = '';
 	let examDate = '';
 	let featurtedImage = '';
 
 	if (upcomingExam[0]) {
+		examId = upcomingExam[0].id;
 		examTitle = upcomingExam[0].examTitle;
 		examCategory = upcomingExam[0].examCategory;
 		examDate = upcomingExam[0].examDate;
@@ -282,6 +291,7 @@ router.get('/exam', async (req, res) => {
 	} else {
 		res.render('exam', {
 			//* upcoming exam
+			examId,
 			examTitle,
 			examCategory,
 			examDate,
@@ -307,6 +317,7 @@ router.get('/career', async (req, res) => {
 		careers,
 	});
 });
+
 
 router.get('/career/:career_id', async (req, res) => {
 	const { career_id } = req.params;
@@ -353,6 +364,22 @@ router.post('/career/search-career', async (req, res) => {
 router.post('/exam/subscribe', (req, res) => {
 	res.render('exam', { examSubscribed: true });
 });
+
+router.get('/exam/:exam_id', async (req, res) => {
+	const { exam_id } = req.params;
+
+	const exam = await Exam.findByPk(exam_id);
+	const featuredImage = '/uploads/' + exam.featuredImage;
+	const { examTitle, overview } = exam;
+
+	res.render('exam_single', {
+		featuredImage,
+		examTitle,
+		overview,
+		exam,
+	});
+});
+
 
 router.get('/register', (req, res) => {
 	const { registerFailed, failMessage } = req.query;

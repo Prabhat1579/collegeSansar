@@ -108,7 +108,7 @@
 
                               <div class='my-2'>
                                  <label class='small' for='name'>Full Name</label>
-                                 <input class='form-control' type='text' id='name' name='fullName' />
+                                 <input class='form-control' type='text' id='name' name='fullName' required />
                               </div>
                               <div class='my-2'>
                                  <label class='small' for='email'>Email</label>
@@ -336,7 +336,7 @@
                      <div class='mb-2'><strong>{{this.username}} - {{this.rate}}</strong></div>
                      <em>{{this.title}}</em>
                      <p>
-                        <small>{{this.description}}</small>
+                        <small>{{{this.description}}}</small>
                      </p>
                   </div>
                {{/each}}

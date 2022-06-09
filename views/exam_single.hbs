@@ -31,7 +31,7 @@
 							<li><a href='/career'>Careers</a></li>
 							<li><a href='/Exam'>Exams</a></li>
 						</div>
-
+                       
 						<div class='d-flex gap-2'>
 							{{#unless isLoggedIn}}
 								<a
@@ -64,9 +64,20 @@
 			<div class='w-100 text-center my-3'>
 				<img class='w-100 rounded mx-auto' src={{featuredImage}} style='object-fit: cover;  max-height:400px' />
 			</div>
-			<p class='lead py-3'>{{careerName}}</p>
+			<p class='lead py-3'>{{examTitle}}</p>
+            <p>{{exam.eligibility}}</p>
+            <p>{{exam.examDate}}</p>
+            {{#if exam.practicePaper}}
+                <a href="{{exam.practicePaper}}">Practice Paper</a>
+            {{/if}}
+
+            {{#if exam.syllabus}}
+                <a href="{{exam.syllabus}}">Syllabus</a>
+            {{/if}}
+
+          
 			<p class='small'>
-				{{{careerDescription}}}
+				{{{overview}}}
 			</p>
 
 		</main>

@@ -63,7 +63,7 @@
 
 				<div class='my-2'>
 					<label class='small'>Career Description</label>
-					<textarea class='form-control' name='careerDescription'>{{careerDescription}}</textarea>
+					<textarea id="editor" class='form-control' name='careerDescription'>{{careerDescription}}</textarea>
 				</div>
 
 				<div class='my-2'>
@@ -83,5 +83,13 @@
 			integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p'
 			crossorigin='anonymous'
 		></script>
+			<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+	<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 	</body>
 </html>

@@ -94,7 +94,7 @@
 						<p>Upcoming Exams</p>
 
 						<div class='d-flex flex-wrap gap-3'>
-							<a href='#' class='card text-decoration-none' style='width: 18rem;'>
+							<a href="/exam/{{this.examId}}" class='card text-decoration-none' style='width: 18rem;'>
 								<img
 									src={{this.featuredImage}}
 									height='200'
@@ -102,6 +102,7 @@
 									class='card-img-top'
 									alt='...'
 								/>
+								
 								<div class='card-body'>
 									<h5 class='card-title'>{{this.examTitle}}</h5>
 									<p class='card-text small'>{{this.examCategory}}</p>

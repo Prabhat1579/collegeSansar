@@ -160,13 +160,14 @@
 		<div class='reviews'>
 			<h1>College Reviews</h1>
 
-			<div class='review-container d-flex flex-wrap gap-3'>
+			<div class='review-container w-60 p-3 d-flex gap-3'>
 
 				{{#each reviews}}
 					<div class='p-3 bg-light rounded my-2 border'>
 						<p>
 							<strong>{{this.college}}</strong>
 						</p>
+					
 						<div class='mb-2 text-muted'><strong>{{this.rate}}</strong></div>
 						<em>{{this.title}}</em>
 						<p>
