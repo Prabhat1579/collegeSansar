@@ -73,7 +73,8 @@
          <div class='d-flex flex-column flex-sm-row gap-3'>
             <div class=''>
                <img class='rounded img-fluid' height='200' src='/assets/KathmanduUniversity.png' alt='' />
-               <button
+               {{#if iseLoggedIn}}
+                   <button
                   data-bs-toggle='modal'
                   data-bs-target='#exampleModal'
                   class='btn btn-sm p-0 my-2 btn-primary'
@@ -84,6 +85,10 @@
                   data-bs-target='#applyModal'
                   class='btn btn-sm p-0 my-2 btn-primary'
                >Apply</button>
+               {{else}}
+                  <span class="text-danger">You need to be logged in to apply or write review</span>
+               {{/if}}
+              
 
                <!-- Button trigger modal -->
 
