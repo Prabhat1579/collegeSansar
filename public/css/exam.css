@@ -177,20 +177,27 @@ height: 536px;
     align-items: center;
 }
 
-.inputSubs input{
+.inputSubs input, select{
     background-color: #005F73;
     outline:none;
     border:none;
     padding:10px 5px;
     margin:2px;
     width:288px;
+    
 }
-.inputSubs input[type="submit"]{
+.inputSubs button{
     background-color: #F94144;
     color:white;
     cursor:pointer;
     width:199px;
+    border:none;
+    padding:10px 5px;
+    margin:2px;
 }
 .inputSubs input::placeholder{
+    color:white;
+}
+.inputSubs select {
     color:white;
 }

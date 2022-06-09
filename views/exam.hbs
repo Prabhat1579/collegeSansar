@@ -208,9 +208,20 @@
 				<form action='/exam/subscribe' method='post'>
 					<div class='inputSubs'>
 						<input type='email' name='email' id='Email' placeholder='Enter your Email' />
-						<input type='text' name='number' id='Number' placeholder='Phone Number' />
-						<input type='text' name='course' id='course' placeholder='Choose course' />
-						<input type='submit' value='Submit' />
+						<input type='number' name='number' id='Number' placeholder='Phone Number' />
+						{{!-- <input type='text' name='course' placeholder='Choose course' list="course">
+						<datalist id="course">
+							<option value="Lok Sewa Aayog"></option>
+							<option value="IOE Entrance Exam"></option>
+							<option value="Medical Entrance Exam"></option>
+						</datalist> --}}
+						 <select name = "course">
+          					  <option disabled hidden selected>Course</option>
+          					  <option value = "Lok Sewa Aayog" >Lok Sewa Aayog</option>
+           		 			 <option value = "IOE Entrance Exam">IOE Entrance Exam</option>
+          					  <option value = "Medical Entrance Exam">Medical Entrance Exam</option>
+         </select>
+						<button id="submit" value="submit">Submit</button>
 					</div>
 				</form>
 
