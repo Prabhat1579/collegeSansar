@@ -37,7 +37,7 @@ const login = async (req, res) => {
 		req.session.username = user.name;
 		req.session.isLoggedIn = true;
 
-		res.redirect('/');
+		res.redirect('/admin');
 	} catch (err) {
 		res.redirect(`/login?loginFailed=true&&failMessage=${err.message}`);
 	}

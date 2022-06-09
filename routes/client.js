@@ -10,6 +10,7 @@ const Apply = require('../model/Apply');
 const User = require('../model/User');
 const Career = require('../model/Career');
 const Exam = require('../model/Exam');
+const Subscribe = require('../model/Subscribe');
 const sendEmail = require('./sendEmail');
 
 const router = express.Router();
@@ -248,7 +249,7 @@ router.post('/college/apply/:college_id', async (req, res) => {
 router.get('/exam', async (req, res) => {
 	const { search, isCategory } = req.query;
 	const Op = Sequelize.Op;
-
+	const exams = await Exam.findAll();
 	let searchExams = [];
 
 	if (isCategory) {
@@ -286,7 +287,7 @@ router.get('/exam', async (req, res) => {
 			examCategory,
 			examDate,
 			featuredImage: `/uploads/${featurtedImage}`,
-
+			exams,
 			//* upcoming exam
 
 			searchExams,
@@ -350,8 +351,17 @@ router.post('/career/search-career', async (req, res) => {
 	});
 });
 
-router.post('/exam/subscribe', (req, res) => {
-	res.render('exam', { examSubscribed: true });
+router.post('/exam/subscribe', async (req, res) => {
+	const {name, email, exam: exam_id} = req.body;
+	const exam  = await Exam.findByPk(exam_id);
+	const subscribe = Subscribe.build({
+		name: name,
+		email: email,
+		examDate: new Date(exam.examDate),
+		title: exam.examTitle
+	})
+	await subscribe.save()
+	res.redirect(`/exam`);
 });
 
 router.get('/register', (req, res) => {
